@@ -1,5 +1,8 @@
 package carnetdevoyage.carnet.presentation;
 
+/**
+ * Classe participant
+ */
 public class Participant {
     private String nom;
     private String photoParticipant;
@@ -13,7 +16,7 @@ public class Participant {
     }
 
     /**
-     * Lie le chemin d'une image sur l'ordinateur à
+     * Lie le chemin d'une image sur l'ordinateur au participant
      * @param cheminImage
      */
     public void setPhoto(String cheminImage){
