@@ -2,11 +2,12 @@ package carnetdevoyage.carnet.pages;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 /**
  * Classe contenant les liens des images de la page
  */
-public class ImageDestination {
+public class ImageDestination implements Iterable<String>{
     private HashMap<Integer,String> cheminsImages;
     private int id;
 
@@ -30,11 +31,25 @@ public class ImageDestination {
     }
 
     /**
+     * Supprime une image de la collection
+     * @param id
+     */
+    public void supprimerUneImage(int id){
+        this.cheminsImages.remove(id);
+    }
+
+
+    /**
      * Récupère le chemin d'une image en fonction de son identifiant
      * @param id
      * @return
      */
     public String getChemin(int id){
         return this.cheminsImages.get(id);
+    }
+
+    @Override
+    public Iterator<String> iterator() {
+        return cheminsImages.values().iterator();
     }
 }

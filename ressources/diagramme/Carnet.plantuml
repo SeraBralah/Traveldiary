@@ -1,0 +1,216 @@
+@startuml
+package carnetdevoyage{
+
+
+package vues{
+
+class Label<<java>>
+class MenuItem<<java>>
+
+class ListView<<Participant>>
+
+Interface Observateur{
+void reagir()
+}
+
+
+class VuePageDestination implements Observateur{
+Label compteur
+Label localisation
+Label descriptionDestination
+VuePageDestination(Carnet carnet, PageDestination page)
+void setvueLocalisation(LocalisationDestination localisation)
+void setvueDescription(DescriptionDestination description)
+void setvueImageLocalisationDestination(ImageDestination image)
+void reagir()
+}
+
+
+class VuePagePresentation implements Observateur{
+Label presentationCarnet
+
+VuePagePresentation(Carnet carnet, PagePresentation page)
+void setvuePresentationCarnet(PresentationCarnet presentation)
+void setvueAuteurCarnet(AuteurCarnet auteur)
+void reagir()
+}
+
+class VueParticipants{
+Hashmap<int,ImageView> Participants
+VueParticipants(GestionnaireParticipants gestionnairep)
+}
+
+class VueMenu {
+VueMenu()
+}
+
+class PanneauControle {
+PanneauControle(Carnet carnet)
+void quitter()
+void changerPageCourante()
+void ajouterPage(PageDestination page)
+void changerPageCourante()
+void ajouterParticipant()
+void modifierParticipant()
+void supprimerParticipant()
+void ajouterLocalisation()
+void ajouterImageDestination()
+void supprimerImageDestination()
+void ajouterDescription()
+void modifierDescription()
+void ajouterAuteur()
+void modifierAuteur()
+
+
+
+}
+
+class VueOutils implements Observateur {
+VueOutils()
+void reagir()
+}
+
+
+
+}
+
+package carnet{
+package pages {
+
+class DescriptionDestination{
+String titre
+String texte
+DescriptionDestination(String titre)
+void setTexte(String texte)
+}
+
+interface Iterable<String><<java>>{
+            Iterator<String> iterator()
+
+            }
+
+class ImageDestination implements Iterable{
+int id
+Hashmap<Integer,String> cheminsImages
+ImageDestination()
+void ajouterUneImage(String chemin)
+void supprimerUneImage(int id)
+String getChemins(int id)
+Iterator<String> iterator()
+}
+
+class LocalisationDestination{
+String localisation
+LocalisationDestination()
+void setLocalisation(String localisation)
+}
+
+class PageDestination{
+int numeroPage
+PageDestination()
+void setLocalisation(LocalisationDestination localisation)
+void setImage(ImageDestination image)
+void setDescription(DescriptionDestination description)
+}
+}
+
+package presentation{
+
+class PresentationCarnet{
+String datedebut
+String datefin
+String titre
+PresentationCarnet (String titre, String datedebut, String datefin)
+}
+class AuteurCarnet{
+String auteur
+String infos
+String photoAuteur
+AuteurCarnet(String auteur)
+void setInfos(String infos)
+void setPhoto(String cheminImage)
+
+}
+interface Iterable<Participant><<java>>{
+            Iterator<Participant> iterator()
+
+            }
+
+
+class Participant {
+String nom
+String photoParticipant
+Participant(String nom)
+void setPhoto(string cheminImage)
+}
+
+class PagePresentation{
+PagePresentation()
+void setAuteurCarnet(AuteurCarnet auteurc)
+void setParticipants(GestionnaireParticipants gestionnairep)
+void setPresentationCarnet(PresentationCarnet presentationc)
+}
+
+class GestionnaireParticipants implements Iterable {
+Hashmap<String,Participant> listeParticipants
+GestionnaireParticipants()
+void AjouterParticipant(Participant participant)
+void SupprimerParticipant(Participant participant)
+}
+
+
+}
+class Carnet extends SujetObserve{
+int nbPage
+int pageCourante
+Carnet()
+void set PageDestination(PageDestination paged)
+void set PagePresentation(PagePresentation pagep)
+PagePresentation getPagePresentation()
+PageDestination getPageDesination(int numpage)
+PageDestination getPageCourante()
+int getPageCourante()
+int nbPage()
+}
+
+class SujetObserve{
+void ajouterObservavteur(Observateur v)
+void notifierObservateur()
+}
+
+}
+
+package utilitaire{
+class TailleComposant{
+TailleComposant()
+TailleComposant getInstance()
+
+}
+
+}
+
+Carnet "1" -- PanneauControle
+ImageDestination "1"-- PageDestination
+LocalisationDestination "1"-- PageDestination
+DescriptionDestination "1"-- PageDestination
+
+AuteurCarnet "1"-- PagePresentation
+GestionnaireParticipants "1" -- PagePresentation
+GestionnaireParticipants -- "*" Participant
+PresentationCarnet "1"-- PagePresentation
+
+PagePresentation "1"-- Carnet
+PageDestination "*"-- Carnet
+
+SujetObserve "1"--"*" Observateur
+
+VueMenu -- "1" PanneauControle
+VueMenu -- "*" MenuItem
+VuePagePresentation -- "*" Label
+VuePageDestination -- "*" Label
+VuePagePresentation --"1" ListView
+
+VueOutils -- "1" PanneauControle
+
+
+@enduml
