@@ -20,6 +20,11 @@ public class Carnet implements Iterable<Pages>{
         pageDestinations = new ArrayList<>();
         this.pageCourante=0;
         this.nbPage=0;
+        this.pagePresentation = new PagePresentation();
+        pages.add(pagePresentation);
+        PageDestination pageDestination = new PageDestination();
+        pages.add(pageDestination);
+        pageDestinations.add(pageDestination);
     }
 
     /**
@@ -54,6 +59,20 @@ public class Carnet implements Iterable<Pages>{
         return this.pages.size();
     }
 
+    /**
+     * On se déplace d'une page
+     */
+    public void avancerPage(){
+        if(this.nbPage>this.pageCourante) this.pageCourante+=1;
+    }
+
+    /**
+     * On recule d'une page
+     */
+    public void reculerPage(){
+        if(this.pageCourante!=0) this.pageCourante-=1;
+    }
+
     @Override
     public Iterator<Pages> iterator() {
         return pages.iterator();
@@ -64,5 +83,13 @@ public class Carnet implements Iterable<Pages>{
         return "Carnet :" + pages +
                 ", pageCourante : " + pageCourante +
                 ", nbPage : " + nbPage;
+    }
+
+    public Pages getPageCourante(){
+        return pages.get(pageCourante);
+    }
+
+    public int getNumPageCourante() {
+        return pageCourante;
     }
 }

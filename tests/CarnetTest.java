@@ -82,4 +82,14 @@ class CarnetTest {
     @Test
     void iterator() {
     }
+
+    @Test
+    void avancerPage(){
+
+    }
+
+    @Test
+    void reculerPage(){
+
+    }
 }

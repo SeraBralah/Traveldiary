@@ -25,4 +25,14 @@ public class PagePresentation extends Pages {
     public String toString() {
         return "---------------------------------- \n PagePresentation : " + gestionnaire + auteur + presentationCarnet +" ---------------------------------- \n";
     }
+
+    @Override
+    public boolean estPresentation() {
+        return true;
+    }
+
+    @Override
+    public boolean estDestination() {
+        return false;
+    }
 }

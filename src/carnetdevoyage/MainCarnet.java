@@ -1,5 +1,7 @@
 package carnetdevoyage;
 
+import carnetdevoyage.carnet.Carnet;
+import carnetdevoyage.vues.ControlleurMenu;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,7 +12,22 @@ public class MainCarnet extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setResizable(false);
-        Parent root = FXMLLoader.load(getClass().getResource("/page_presentation.fxml"));
+        Carnet carnet = new Carnet();
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/page_presentation.fxml"));
+        loader.setControllerFactory(ic -> {
+            if (ic == ControlleurMenu.class) {
+                return new ControlleurMenu(carnet);
+            } else {
+                try {
+                    return ic.getDeclaredConstructor().newInstance();
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
+        Parent root = loader.load();
         primaryStage.setTitle("Application JavaFX Simple");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();

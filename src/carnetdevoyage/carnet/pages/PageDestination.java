@@ -9,6 +9,9 @@ public class PageDestination extends Pages {
     private ImageDestination imageDestination;
     private int numPage;
 
+    /**
+     * COnstructeur de la page de destination
+     */
     public PageDestination(){
     this.numPage=0;
     }
@@ -34,5 +37,15 @@ public class PageDestination extends Pages {
         return "---------------------------------- \n PageDestination : \n" + descriptionDestination + localisationDestination +
                 imageDestination +
                 "---------------------------------- \n";
+    }
+
+    @Override
+    public boolean estPresentation() {
+        return false;
+    }
+
+    @Override
+    public boolean estDestination() {
+        return true;
     }
 }

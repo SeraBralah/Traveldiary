@@ -7,9 +7,11 @@ import javafx.fxml.FXML;
 public class ControlleurNavigation {
 
     private  Carnet c;
+    public ControlleurNavigation(){}
+    /*
     public ControlleurNavigation(Carnet carnet) {
         this.c=carnet;
-    }
+    }*/
 
     @FXML
     void pageSuivante(ActionEvent event) {

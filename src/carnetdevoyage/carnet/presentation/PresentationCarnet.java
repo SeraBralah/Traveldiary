@@ -10,7 +10,7 @@ import java.time.format.DateTimeParseException;
 /**
  * Classe Presentation du carnet
  */
-public class PresentationCarnet extends Pages {
+public class PresentationCarnet {
 
     private String datedebut;
     private String datefin;
@@ -130,4 +130,5 @@ return true;
                 "début : "+  datedebut +"fin : "+ datefin + titre +
                 "\n";
     }
+
 }
