@@ -9,9 +9,10 @@ import javafx.stage.Stage;
 public class MainCarnet extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/MainView.fxml"));
+        primaryStage.setResizable(false);
+        Parent root = FXMLLoader.load(getClass().getResource("/page_presentation.fxml"));
         primaryStage.setTitle("Application JavaFX Simple");
-        primaryStage.setScene(new Scene(root, 300, 200));
+        primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
 

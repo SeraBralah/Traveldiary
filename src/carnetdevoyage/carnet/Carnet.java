@@ -1,21 +1,68 @@
 package carnetdevoyage.carnet;
 
+import carnetdevoyage.carnet.pages.PageDestination;
 import carnetdevoyage.carnet.presentation.PagePresentation;
 
-public class Carnet {
-    private PagePresentation pagePresentation;
+import java.util.ArrayList;
+import java.util.Iterator;
 
+public class Carnet implements Iterable<Pages>{
+    private PagePresentation pagePresentation;
+    private ArrayList<Pages>  pages;
+    private ArrayList<PageDestination> pageDestinations;
+    private int pageCourante;
+    private int nbPage;
     /**
      * Constructeur du carnet
      */
     public Carnet(){
+        pages = new ArrayList<>();
+        pageDestinations = new ArrayList<>();
+        this.pageCourante=0;
+        this.nbPage=0;
     }
 
     /**
-     * Set la page de présentation du carnet
+     * Crée la page de présentation du carnet
      * @param pagePresentation
      */
-    public void setPagePresentation(PagePresentation pagePresentation) {
+    public void ajouterPagePresentation(PagePresentation pagePresentation) {
         this.pagePresentation = pagePresentation;
+        this.pages.add(pagePresentation);
+        this.nbPage++;
+    }
+
+    /**
+     * Crée la page de destination du carnet
+     * @param pageDestination
+     */
+    public void ajouterPageDestination(PageDestination pageDestination) {
+        this.pageDestinations.add(pageDestination);
+        this.pages.add(pageDestination);
+        this.nbPage++;
+    }
+
+    public void supprimerPageDestination(int numPage){
+        this.pages.remove(numPage);
+    }
+
+    /**
+     * Indique le nombre de page dans le carnet
+     * @return
+     */
+    public int nbPage(){
+        return this.pages.size();
+    }
+
+    @Override
+    public Iterator<Pages> iterator() {
+        return pages.iterator();
+    }
+
+    @Override
+    public String toString() {
+        return "Carnet :" + pages +
+                ", pageCourante : " + pageCourante +
+                ", nbPage : " + nbPage;
     }
 }

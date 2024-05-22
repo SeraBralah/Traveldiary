@@ -13,9 +13,15 @@ public class DescriptionDestination {
      */
     public DescriptionDestination(String titre){
         this.titre = titre;
+        this.texte =" ";
     }
 
-    public void setTexte(String texte) {
+    public void ajouterDescription(String texte) {
         this.texte = texte;
+    }
+
+    @Override
+    public String toString() {
+        return "\n Destination : " + titre + " \n" + texte + "\n";
     }
 }

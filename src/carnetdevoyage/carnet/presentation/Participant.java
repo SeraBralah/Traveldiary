@@ -22,6 +22,13 @@ public class Participant {
     public void setPhoto(String cheminImage){
         this.photoParticipant=cheminImage;
     }
+
+    @Override
+    public String toString() {
+        return "\n Participant : " + nom +
+                ", photo :'" + photoParticipant +
+                '\n';
+    }
 }
 
 // gérer les images dans les vues avec une sauvegarde vers ressource

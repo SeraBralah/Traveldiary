@@ -11,6 +11,7 @@ public class ImageDestination implements Iterable<String>{
     private HashMap<Integer,String> cheminsImages;
     private int id;
 
+
     /**
      * Constructeur de la classe des images de la destination
      */
@@ -51,5 +52,12 @@ public class ImageDestination implements Iterable<String>{
     @Override
     public Iterator<String> iterator() {
         return cheminsImages.values().iterator();
+    }
+
+    @Override
+    public String toString() {
+        return "\n Image Destination " +
+                "chemins : " + cheminsImages +
+                " \n";
     }
 }

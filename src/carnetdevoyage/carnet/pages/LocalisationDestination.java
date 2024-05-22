@@ -9,8 +9,8 @@ public class LocalisationDestination {
     /**
      * Constructeur de la classe localisation
      */
-    LocalisationDestination(){
-        this.localisation="";
+    public LocalisationDestination(){
+        this.localisation=" ";
     }
 
     /**
@@ -19,5 +19,10 @@ public class LocalisationDestination {
      */
     public void setLocalisation(String localisation) {
         this.localisation = localisation;
+    }
+
+    @Override
+    public String toString() {
+        return "Localisation : " + localisation + '\n' ;
     }
 }

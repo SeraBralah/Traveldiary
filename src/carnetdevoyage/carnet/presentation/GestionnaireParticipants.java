@@ -38,4 +38,10 @@ public class GestionnaireParticipants implements Iterable<Participant> {
     public Iterator<Participant> iterator() {
         return this.listeparticipants.iterator();
     }
+
+    @Override
+    public String toString() {
+        return "\n Participants :" + listeparticipants +
+                '\n';
+    }
 }

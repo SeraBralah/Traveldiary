@@ -1,6 +1,8 @@
 package carnetdevoyage.carnet.presentation;
 
-public class PagePresentation {
+import carnetdevoyage.carnet.Pages;
+
+public class PagePresentation extends Pages {
     private GestionnaireParticipants gestionnaire;
     private AuteurCarnet auteur;
     private PresentationCarnet presentationCarnet;
@@ -17,5 +19,10 @@ public class PagePresentation {
 
     public void setPresentationCarnet(PresentationCarnet presentationCarnet) {
         this.presentationCarnet = presentationCarnet;
+    }
+
+    @Override
+    public String toString() {
+        return "---------------------------------- \n PagePresentation : " + gestionnaire + auteur + presentationCarnet +" ---------------------------------- \n";
     }
 }
