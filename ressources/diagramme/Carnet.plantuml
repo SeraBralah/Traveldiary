@@ -14,11 +14,11 @@ void reagir()
 }
 
 
-class VuePageDestination implements Observateur{
+class ControlleurDestination implements Observateur{
 Label compteur
 Label localisation
 Label descriptionDestination
-VuePageDestination(Carnet carnet, PageDestination page)
+ControlleurDestination(Carnet carnet, PageDestination page)
 void setvueLocalisation(LocalisationDestination localisation)
 void setvueDescription(DescriptionDestination description)
 void setvueImageLocalisationDestination(ImageDestination image)
@@ -26,10 +26,10 @@ void reagir()
 }
 
 
-class VuePagePresentation implements Observateur{
+class ControlleurPresentation implements Observateur{
 Label presentationCarnet
 
-VuePagePresentation(Carnet carnet, PagePresentation page)
+ControlleurPresentation(Carnet carnet, PagePresentation page)
 void setvuePresentationCarnet(PresentationCarnet presentation)
 void setvueAuteurCarnet(AuteurCarnet auteur)
 void reagir()
@@ -206,9 +206,9 @@ SujetObserve "1"--"*" Observateur
 
 VueMenu -- "1" PanneauControle
 VueMenu -- "*" MenuItem
-VuePagePresentation -- "*" Label
-VuePageDestination -- "*" Label
-VuePagePresentation --"1" ListView
+ControlleurPresentation -- "*" Label
+ControlleurDestination -- "*" Label
+ControlleurPresentation --"1" ListView
 
 VueOutils -- "1" PanneauControle
 
