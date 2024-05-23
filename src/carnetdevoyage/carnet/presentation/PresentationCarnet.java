@@ -86,10 +86,16 @@ return true;
 
             LocalDate debut = LocalDate.parse(datedebut, modeledate);
             LocalDate fin = LocalDate.parse(datefin, modeledate);
-            return fin.isAfter(debut);
+            if (!fin.isAfter(debut)) {
+                throw new DateException("La fin est avant le début");
+            } else {
+                return true;
+            }
+
         } catch (DateTimeParseException e) {
             throw new DateException("La fin est avant le début");
         }
+
     }
 
     /**

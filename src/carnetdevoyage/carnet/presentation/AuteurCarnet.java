@@ -15,7 +15,7 @@ public class AuteurCarnet {
     public AuteurCarnet(String auteur){
         this.auteur = auteur;
         this.infos = "informations manquantes";
-        this.photoAuteur="";
+        this.photoAuteur=" ";
     }
 
     /**
@@ -71,7 +71,7 @@ public class AuteurCarnet {
         return "\n Auteur :" +
                   auteur +
                 ", infos :'" + infos +
-                ", photo :" + photoAuteur + '\n'
+                ", photo :" + photoAuteur + "\n"
                 ;
     }
 }

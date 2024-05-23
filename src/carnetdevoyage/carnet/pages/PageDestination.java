@@ -39,7 +39,7 @@ public class PageDestination extends Pages {
     public String toString() {
         return "---------------------------------- \n PageDestination : \n" + descriptionDestination + localisationDestination +
                 imageDestination +
-                "---------------------------------- \n";
+                "\n ---------------------------------- \n";
     }
 
     @Override

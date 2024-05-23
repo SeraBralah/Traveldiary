@@ -20,11 +20,6 @@ public class Carnet implements Iterable<Pages>{
         pageDestinations = new ArrayList<>();
         this.pageCourante=0;
         this.nbPage=0;
-        this.pagePresentation = new PagePresentation();
-        pages.add(pagePresentation);
-        PageDestination pageDestination = new PageDestination();
-        pages.add(pageDestination);
-        pageDestinations.add(pageDestination);
     }
 
     /**

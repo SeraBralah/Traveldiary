@@ -13,14 +13,17 @@ import carnetdevoyage.exceptions.DateException;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class ControlleurCreationCarnet {
 
-    Carnet c;
+    private Carnet c;
 
+    private boolean carnetvalide;
     @FXML
     private TextField nomAuteur;
 
@@ -49,14 +52,19 @@ public class ControlleurCreationCarnet {
     @FXML
     void Exitc(ActionEvent event) {
         //
+        this.carnetvalide=false;
         this.p = new PagePresentation();
         p.setAuteur(a);
         p.setGestionnaire(new GestionnaireParticipants());
         ajouterAuteur();
+        ajouterInfosAuteur();
         //gérer le nombre de page
         ajouterPages();
         //set l'image
-
+        if(carnetvalide) {
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.close();
+        }
         //ajouter les informations
     }
 
@@ -66,7 +74,7 @@ public class ControlleurCreationCarnet {
     }
 
     void ajouterInfosAuteur(){
-
+        a.setInfos(infoAuteur.getText());
     }
 
     void ajouterPages() {
@@ -74,18 +82,21 @@ public class ControlleurCreationCarnet {
         String fin = datefin.getText();
         PresentationCarnet presentation = new PresentationCarnet("Carnet de voyage");
         try {
-            presentation.setDatedebut(deb);
-            presentation.setDatefin(fin);
-            int nbjour = presentation.nbJourDuVoyage(presentation.getDatedebut(), presentation.getDatefin());
-            c.ajouterPagePresentation(p);
-            for (int i = 0; i < nbjour; i++) {
-                //ajouter les pages dans le carnet
-                PageDestination pd = new PageDestination();
-                pd.setNumPage(i+1);
-                c.ajouterPageDestination(pd);
-                System.out.println("AJout de page");
+            if(presentation.dateValide(deb,fin)) {
+                presentation.setDatedebut(deb);
+                presentation.setDatefin(fin);
+                int nbjour = presentation.nbJourDuVoyage(presentation.getDatedebut(), presentation.getDatefin());
+                c.ajouterPagePresentation(p);
+                for (int i = 0; i < nbjour; i++) {
+                    //ajouter les pages dans le carnet
+                    PageDestination pd = new PageDestination();
+                    pd.setNumPage(i + 1);
+                    c.ajouterPageDestination(pd);
+
+                }
+                System.out.println(c);
+                this.carnetvalide=true;
             }
-            System.out.println(c);
         } catch (DateException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");

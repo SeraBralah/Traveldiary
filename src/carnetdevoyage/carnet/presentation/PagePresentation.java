@@ -24,7 +24,7 @@ public class PagePresentation extends Pages {
 
     @Override
     public String toString() {
-        return "---------------------------------- \n PagePresentation : " + gestionnaire + auteur + presentationCarnet +" ---------------------------------- \n";
+        return "---------------------------------- \n PagePresentation : " + gestionnaire + auteur + presentationCarnet +"\n ---------------------------------- \n";
     }
 
     @Override
