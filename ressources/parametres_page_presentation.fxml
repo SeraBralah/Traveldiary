@@ -7,15 +7,14 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="419.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="carnetdevoyage.vues.ControlleurMenu">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="622.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="carnetdevoyage.vues.ControlleurCreationCarnet">
    <children>
       <Label text="Nom de l'auteur :">
          <VBox.margin>
             <Insets left="40.0" top="10.0" />
          </VBox.margin>
       </Label>
-      <TextField prefHeight="26.0" prefWidth="466.0">
+      <TextField fx:id="nomAuteur" prefHeight="26.0" prefWidth="466.0">
          <opaqueInsets>
             <Insets bottom="10.0" left="40.0" right="40.0" top="10.0" />
          </opaqueInsets>
@@ -28,7 +27,7 @@
             <Insets left="40.0" />
          </VBox.margin>
       </Label>
-      <TextField prefHeight="233.0" prefWidth="600.0">
+      <TextField fx:id="infoAuteur" alignment="TOP_LEFT" prefHeight="233.0" prefWidth="600.0">
          <opaqueInsets>
             <Insets bottom="10.0" left="40.0" right="40.0" top="10.0" />
          </opaqueInsets>
@@ -38,19 +37,45 @@
       </TextField>
       <HBox prefHeight="31.0" prefWidth="516.0">
          <children>
-            <Label text="Charger une image de l'auteur :">
+            <Label text="Image auteur :">
                <padding>
                   <Insets left="40.0" top="5.0" />
                </padding>
             </Label>
-            <Button mnemonicParsing="false" text="Rechercher">
+            <Button mnemonicParsing="false" onAction="#ChercherImage" text="Rechercher">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>
             </Button>
          </children>
       </HBox>
-      <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="26.0" prefWidth="83.0" text="Valider">
+      <Label text="Date de début du voyage (dd/mm/yyyy)">
+         <VBox.margin>
+            <Insets left="40.0" top="10.0" />
+         </VBox.margin>
+      </Label>
+      <TextField fx:id="datedebut" prefHeight="26.0" prefWidth="466.0">
+         <opaqueInsets>
+            <Insets bottom="10.0" left="40.0" right="40.0" top="10.0" />
+         </opaqueInsets>
+         <VBox.margin>
+            <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+         </VBox.margin>
+      </TextField>
+      <Label text="Date de fin du voyage (dd/mm/yyyy)">
+         <VBox.margin>
+            <Insets left="40.0" />
+         </VBox.margin>
+      </Label>
+      <TextField fx:id="datefin" prefHeight="26.0" prefWidth="466.0">
+         <opaqueInsets>
+            <Insets bottom="10.0" left="40.0" right="40.0" top="10.0" />
+         </opaqueInsets>
+         <VBox.margin>
+            <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+         </VBox.margin>
+      </TextField>
+      <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#Exitc" prefHeight="26.0" prefWidth="83.0" text="Valider">
          <VBox.margin>
             <Insets bottom="20.0" left="200.0" top="20.0" />
          </VBox.margin>

@@ -13,6 +13,9 @@ public class PageDestination extends Pages {
      * COnstructeur de la page de destination
      */
     public PageDestination(){
+    this.localisationDestination = new LocalisationDestination();
+    this.descriptionDestination = new DescriptionDestination("Notre destination");
+    this.descriptionDestination.ajouterDescription("C'était chouette ? \n Expliquez nous pourquoi.");
     this.numPage=0;
     }
 

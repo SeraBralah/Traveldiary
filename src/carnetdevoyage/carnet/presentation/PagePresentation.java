@@ -7,7 +7,8 @@ public class PagePresentation extends Pages {
     private AuteurCarnet auteur;
     private PresentationCarnet presentationCarnet;
 
-    public PagePresentation(){}
+    public PagePresentation(){
+    }
 
     public void setAuteur(AuteurCarnet auteur) {
         this.auteur = auteur;

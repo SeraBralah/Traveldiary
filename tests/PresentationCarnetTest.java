@@ -42,4 +42,12 @@ class PresentationCarnetTest {
         assertFalse(carnet.dateValide(carnet.getDatedebut(),carnet.getDatefin()));
     }
 
+    @Test
+    void nbJour() throws DateException {
+        PresentationCarnet carnet = new PresentationCarnet("Test");
+        carnet.setDatedebut("02/04/2022");
+        carnet.setDatefin("02/04/2023");
+        assertEquals(carnet.nbJourDuVoyage(carnet.getDatedebut(),carnet.getDatefin()),365);
+    }
+
 }

@@ -1,6 +1,7 @@
 package carnetdevoyage;
 
 import carnetdevoyage.carnet.Carnet;
+import carnetdevoyage.carnet.presentation.AuteurCarnet;
 import carnetdevoyage.vues.ControlleurMenu;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +15,7 @@ public class MainCarnet extends Application {
         primaryStage.setResizable(false);
         Carnet carnet = new Carnet();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/page_presentation.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/page_accueil.fxml"));
         loader.setControllerFactory(ic -> {
             if (ic == ControlleurMenu.class) {
                 return new ControlleurMenu(carnet);

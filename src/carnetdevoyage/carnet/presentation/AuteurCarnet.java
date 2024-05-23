@@ -19,6 +19,14 @@ public class AuteurCarnet {
     }
 
     /**
+     * Set le nom de l'auteur
+     * @param auteur
+     */
+    public void setAuteur(String auteur) {
+        this.auteur = auteur;
+    }
+
+    /**
      * Set les informations sur l'auteur du carnet
      * @param infos
      */

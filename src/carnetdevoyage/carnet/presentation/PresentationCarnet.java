@@ -6,6 +6,7 @@ import carnetdevoyage.exceptions.DateException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoUnit;
 
 /**
  * Classe Presentation du carnet
@@ -56,20 +57,16 @@ public class PresentationCarnet {
         if(mois==2) {
             if (annee % 4 == 0) {
                 if (0 >= jour || jour >= 30) {
-                    System.out.println("Mois de février en année 4");
                     return false;
                 }
             } else if (0 >= jour || jour >= 29) return false;
         }
         if(mois%2==0 ){
             if(0>=jour || jour>=31){ //jour plus petit que 0 ou plus grand que 31
-                System.out.println("jour plus petit que 0 ou plus grand que 31");
                 return false;
             }
         } else { //mois impair, février et août
             if (0 >= jour || jour >= 32) {
-                System.out.println("mois impair, février et août");
-
                 return false;
             }
 
@@ -102,7 +99,6 @@ return true;
      */
     public void setDatefin(String datefin) throws DateException{
         try{
-            System.out.println(datefin);
             LocalDate fin = LocalDate.parse(datefin, modeledate);
             boolean dateverifier = verifDate(datefin);
             if(!dateverifier) throw new DateException("La date est invalide");
@@ -110,6 +106,16 @@ return true;
         } catch (DateTimeParseException e) {
             throw new DateException("La date est incorrecte");
         }
+    }
+
+    public int nbJourDuVoyage(String datedebut, String datefin) {
+    LocalDate deb = LocalDate.parse(datedebut, modeledate);
+    LocalDate fin = LocalDate.parse(datefin, modeledate);
+    long nbJour = ChronoUnit.DAYS.between(deb,fin);
+    int nbJours = (int) nbJour;
+
+    return nbJours;
+
     }
 
     public String getDatedebut() {

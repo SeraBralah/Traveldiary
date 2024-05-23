@@ -33,74 +33,36 @@
 -->
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="605.0" prefWidth="1021.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="carnetdevoyage.vues">
   <children>
-    <MenuBar VBox.vgrow="NEVER">
-      <menus>
-        <Menu mnemonicParsing="false" text="File">
-          <items>
-            <MenuItem mnemonicParsing="false" text="New" />
-            <MenuItem mnemonicParsing="false" text="Open…" />
-            <Menu mnemonicParsing="false" text="Open Recent" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Close" />
-            <MenuItem mnemonicParsing="false" text="Save" />
-            <MenuItem mnemonicParsing="false" text="Save As…" />
-            <MenuItem mnemonicParsing="false" text="Revert" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Preferences…" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Quit" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Edit">
-          <items>
-            <MenuItem mnemonicParsing="false" text="Undo" />
-            <MenuItem mnemonicParsing="false" text="Redo" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Cut" />
-            <MenuItem mnemonicParsing="false" text="Copy" />
-            <MenuItem mnemonicParsing="false" text="Paste" />
-            <MenuItem mnemonicParsing="false" text="Delete" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Select All" />
-            <MenuItem mnemonicParsing="false" text="Unselect All" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Help">
-          <items>
-            <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
-          </items>
-        </Menu>
-      </menus>
-    </MenuBar>
       <BorderPane>
          <left>
-            <VBox prefHeight="264.0" prefWidth="289.0" BorderPane.alignment="CENTER">
+            <VBox prefHeight="491.0" prefWidth="454.0" BorderPane.alignment="CENTER">
                <children>
                   <Label alignment="CENTER" prefHeight="17.0" prefWidth="374.0" text="Titre du voyage" wrapText="true">
                      <font>
                         <Font name="Times New Roman Bold" size="19.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="202.0" prefWidth="336.0" text="Quelques petites informations sur notre super voyage, il était vraiment génial ce voyage. Incroyable pour ainsi dire." wrapText="true">
+                  <Label prefHeight="446.0" prefWidth="433.0" text="Quelques petites informations sur notre super voyage, il était vraiment génial ce voyage. Incroyable pour ainsi dire." wrapText="true">
                      <font>
                         <Font size="13.0" />
                      </font>
+                     <opaqueInsets>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </opaqueInsets>
                   </Label>
-                  <Label prefHeight="20.0" prefWidth="338.0" text="Localisation" wrapText="true" />
+                  <Label contentDisplay="CENTER" prefHeight="20.0" prefWidth="338.0" text="Localisation" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font size="19.0" />
+                     </font></Label>
                </children>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="5.0" />
@@ -108,35 +70,30 @@
             </VBox>
          </left>
          <right>
-            <VBox prefHeight="264.0" prefWidth="341.0" BorderPane.alignment="CENTER">
+            <VBox prefHeight="379.0" prefWidth="504.0" BorderPane.alignment="CENTER">
                <padding>
                   <Insets top="5.0" />
                </padding>
                <children>
-                  <HBox prefHeight="139.0" prefWidth="633.0">
+                  <HBox prefHeight="286.0" prefWidth="504.0">
                      <children>
-                        <ImageView fitHeight="131.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="279.0" fitWidth="176.0" pickOnBounds="true" preserveRatio="true">
                            <HBox.margin>
                               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                            </HBox.margin>
                         </ImageView>
-                        <ImageView fitHeight="131.0" fitWidth="150.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="282.0" fitWidth="290.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                            <HBox.margin>
                               <Insets bottom="2.0" left="30.0" right="2.0" top="2.0" />
                            </HBox.margin>
                         </ImageView>
                      </children>
                   </HBox>
-                  <HBox prefHeight="139.0" prefWidth="633.0">
+                  <HBox prefHeight="283.0" prefWidth="504.0">
                      <children>
-                        <ImageView fitHeight="131.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="277.0" fitWidth="497.0" pickOnBounds="true" preserveRatio="true">
                            <HBox.margin>
                               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                           </HBox.margin>
-                        </ImageView>
-                        <ImageView fitHeight="131.0" fitWidth="150.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
-                           <HBox.margin>
-                              <Insets bottom="2.0" left="30.0" right="2.0" top="2.0" />
                            </HBox.margin>
                         </ImageView>
                      </children>
@@ -144,26 +101,10 @@
                </children>
             </VBox>
          </right>
-         <bottom>
-            <HBox prefHeight="25.0" prefWidth="632.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="25.0" prefWidth="112.0" text="&lt;" />
-                  <Label alignment="CENTER" prefHeight="25.0" prefWidth="657.0" text="0/...">
-                     <HBox.margin>
-                        <Insets bottom="5.0" />
-                     </HBox.margin>
-                  </Label>
-                  <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="25.0" prefWidth="112.0" text="&gt;">
-                     <HBox.margin>
-                        <Insets bottom="5.0" />
-                     </HBox.margin>
-                  </Button>
-               </children>
-            </HBox>
-         </bottom>
-         <padding>
-            <Insets left="10.0" right="10.0" />
-         </padding>
+         <top>
+            <fx:include source="menu.fxml" />
+         </top>
       </BorderPane>
+      <fx:include source="navigation.fxml" />
   </children>
 </VBox>
