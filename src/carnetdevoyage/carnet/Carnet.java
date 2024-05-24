@@ -6,7 +6,7 @@ import carnetdevoyage.carnet.presentation.PagePresentation;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class Carnet implements Iterable<Pages>{
+public class Carnet extends SujetObserve implements Iterable<Pages> {
     private PagePresentation pagePresentation;
     private ArrayList<Pages>  pages;
     private ArrayList<PageDestination> pageDestinations;
@@ -30,6 +30,7 @@ public class Carnet implements Iterable<Pages>{
         this.pagePresentation = pagePresentation;
         this.pages.add(pagePresentation);
         this.nbPage++;
+        notifierObservateurs();
     }
 
     /**
@@ -40,6 +41,7 @@ public class Carnet implements Iterable<Pages>{
         this.pageDestinations.add(pageDestination);
         this.pages.add(pageDestination);
         this.nbPage++;
+        notifierObservateurs();
     }
 
     public void supprimerPageDestination(int numPage){

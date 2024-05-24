@@ -10,11 +10,12 @@ import org.junit.jupiter.api.Test;
 
 class CarnetTest {
 
-    @Test
+
+
     /**
      * Carnet fonctionnel pour les tests
      */
-    void constructeurComplet() throws DateException {
+    Carnet constructeurComplet() throws DateException {
 
         // PAGE 1 :
         DescriptionDestination descriptionDestination = new DescriptionDestination("La chambre");
@@ -63,7 +64,8 @@ class CarnetTest {
         carnet.ajouterPageDestination(pageDestination);
         carnet.ajouterPageDestination(pageDestination2);
 
-        System.out.println(carnet);
+
+        return carnet;
 
     }
 
@@ -76,7 +78,9 @@ class CarnetTest {
     }
 
     @Test
-    void nbPage() {
+    void nbPage() throws DateException {
+        Carnet c = constructeurComplet();
+        assertEquals(c.nbPage(),3);
     }
 
     @Test
@@ -84,12 +88,25 @@ class CarnetTest {
     }
 
     @Test
-    void avancerPage(){
+    void avancerPage() throws DateException {
+        Carnet c = constructeurComplet();
+        c.avancerPage();
+        assertEquals(c.getNumPageCourante(),1);
+
+
 
     }
 
     @Test
-    void reculerPage(){
+    void reculerPage() throws DateException {
+        Carnet c = constructeurComplet();
+        c.reculerPage();
+        assertEquals(c.getNumPageCourante(),0);
+        c.avancerPage();
+        c.avancerPage();
+        c.reculerPage();
+        assertEquals(c.getNumPageCourante(),1);
+
 
     }
 }

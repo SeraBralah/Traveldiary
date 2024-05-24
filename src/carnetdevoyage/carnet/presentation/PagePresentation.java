@@ -10,6 +10,18 @@ public class PagePresentation extends Pages {
     public PagePresentation(){
     }
 
+    public AuteurCarnet getAuteur() {
+        return auteur;
+    }
+
+    public GestionnaireParticipants getGestionnaire() {
+        return gestionnaire;
+    }
+
+    public PresentationCarnet getPresentationCarnet() {
+        return presentationCarnet;
+    }
+
     public void setAuteur(AuteurCarnet auteur) {
         this.auteur = auteur;
     }

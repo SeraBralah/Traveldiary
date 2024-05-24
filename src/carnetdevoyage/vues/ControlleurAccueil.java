@@ -60,7 +60,11 @@ public class ControlleurAccueil {
                     menuLoader.setControllerFactory(ic -> {
                         if (ic == ControlleurMenu.class) {
                             return new ControlleurMenu(carnet);
-                        } else {
+                        }
+                        else if (ic == ControlleurPagePresentation.class) {
+                            return new ControlleurPagePresentation(carnet);
+                        }
+                        else {
                             try {
                                 return ic.getDeclaredConstructor().newInstance();
                             } catch (Exception e) {

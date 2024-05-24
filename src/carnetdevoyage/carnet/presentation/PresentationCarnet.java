@@ -22,6 +22,7 @@ public class PresentationCarnet {
      * @param titre
      */
     public PresentationCarnet(String titre) {
+
         this.titre = titre;
     }
 
