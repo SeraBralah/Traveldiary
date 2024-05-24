@@ -55,12 +55,12 @@
                         <Font name="Times New Roman Bold" size="19.0" />
                      </font>
                   </Label>
-                  <Label fx:id="infosauteur" prefHeight="19.0" prefWidth="384.0" text="Infos auteur : âge, centre d'intérêt..." wrapText="true">
+                  <Label fx:id="infosauteur" prefHeight="106.0" prefWidth="593.0" text="Infos auteur : âge, centre d'intérêt..." wrapText="true">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <ImageView fx:id="imageauteur" fitHeight="178.0" fitWidth="182.0" focusTraversable="true" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" translateX="80.0">
+                  <ImageView fx:id="imageauteur" fitHeight="235.0" fitWidth="234.0" focusTraversable="true" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" translateX="80.0">
                      <image>
                         <Image url="@/images/default/auteur.jpg" />
                      </image>
