@@ -23,6 +23,10 @@ public class Participant {
         this.photoParticipant=cheminImage;
     }
 
+    public String getNom() {
+        return nom;
+    }
+
     @Override
     public String toString() {
         return "\n Participant : " + nom +

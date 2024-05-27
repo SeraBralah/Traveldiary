@@ -2,6 +2,9 @@ package carnetdevoyage.vues;
 
 import carnetdevoyage.carnet.Carnet;
 import carnetdevoyage.carnet.presentation.PagePresentation;
+import carnetdevoyage.carnet.presentation.Participant;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -29,7 +32,7 @@ public class ControlleurPagePresentation implements Observateur {
     private Label date;
 
     @FXML
-    private ListView<?> listviewParticipant;
+    private ListView<String> listviewParticipant;
 
     private Carnet c;
 
@@ -52,6 +55,18 @@ public class ControlleurPagePresentation implements Observateur {
         this.date.setText(s.toString());
        this.titreCarnet.setText(p.getPresentationCarnet().getTitre());
         this.infosoption.setText(" ");
+
+        this.listviewParticipant = new ListView<String>();
+
+
+        ObservableList<String> noms = FXCollections.observableArrayList();
+
+        for (Participant participant : this.c.getPagePresentation().getGestionnaire()) {
+            noms.add(participant.getNom());
+            System.out.println(participant.getNom());
+        }
+
+        this.listviewParticipant.setItems(noms);
 
     }
 

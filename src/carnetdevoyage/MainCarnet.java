@@ -32,7 +32,7 @@ public class MainCarnet extends Application {
         });
 
         Parent root = loader.load();
-        primaryStage.setTitle("Application JavaFX Simple");
+        primaryStage.setTitle("Carnet de voyage");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }

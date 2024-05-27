@@ -33,6 +33,9 @@ public class GestionnaireParticipants implements Iterable<Participant> {
         this.listeparticipants.remove(participant);
     }
 
+    public ArrayList<Participant> getListeparticipants() {
+        return listeparticipants;
+    }
 
     @Override
     public Iterator<Participant> iterator() {

@@ -93,4 +93,8 @@ public class Carnet extends SujetObserve implements Iterable<Pages> {
     public int getNumPageCourante() {
         return pageCourante;
     }
+
+    public PagePresentation getPagePresentation() {
+        return pagePresentation;
+    }
 }
