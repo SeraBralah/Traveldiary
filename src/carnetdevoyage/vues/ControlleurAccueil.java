@@ -63,6 +63,8 @@ public class ControlleurAccueil {
                         }
                         else if (ic == ControlleurPagePresentation.class) {
                             return new ControlleurPagePresentation(carnet);
+                        } else if  (ic == ControlleurNavigation.class ) {
+                            return new ControlleurNavigation(carnet);
                         }
                         else {
                             try {

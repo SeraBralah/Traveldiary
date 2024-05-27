@@ -3,6 +3,7 @@ package carnetdevoyage;
 import carnetdevoyage.carnet.Carnet;
 import carnetdevoyage.carnet.presentation.AuteurCarnet;
 import carnetdevoyage.vues.ControlleurMenu;
+import carnetdevoyage.vues.ControlleurNavigation;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,6 +20,8 @@ public class MainCarnet extends Application {
         loader.setControllerFactory(ic -> {
             if (ic == ControlleurMenu.class) {
                 return new ControlleurMenu(carnet);
+            } else if (ic == ControlleurNavigation.class ) {
+                return new ControlleurNavigation(carnet);
             } else {
                 try {
                     return ic.getDeclaredConstructor().newInstance();
