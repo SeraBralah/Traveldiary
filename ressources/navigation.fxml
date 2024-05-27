@@ -5,11 +5,10 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 
-
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="1021.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="carnetdevoyage.vues.ControlleurNavigation">
    <children>
       <Button mnemonicParsing="false" onAction="#pagePrecedente" prefHeight="26.0" prefWidth="24.0" text="&lt;" />
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="1021.0" text=".../..." textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
+      <Label fx:id="nbPage" alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="1021.0" text=".../..." textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
          <opaqueInsets>
             <Insets top="5.0" />
          </opaqueInsets>

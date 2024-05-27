@@ -8,15 +8,25 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class ControlleurNavigation {
 
+    @FXML
+    private Label nbPage;
+
     private  Carnet c;
     public ControlleurNavigation(Carnet carnet) {
         this.c=carnet;
+    }
+
+    @FXML
+    public void initialize() {
+        this.nbPage.setText((c.getNumPageCourante()+1)+"/"+(c.getNbPage()+1));
     }
 
     @FXML

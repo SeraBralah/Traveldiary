@@ -75,6 +75,10 @@ public class Carnet extends SujetObserve implements Iterable<Pages> {
         return pages.iterator();
     }
 
+    public int getNbPage() {
+        return nbPage;
+    }
+
     @Override
     public String toString() {
         return "Carnet :" + pages +

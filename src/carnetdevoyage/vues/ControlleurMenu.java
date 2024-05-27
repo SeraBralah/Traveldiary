@@ -9,10 +9,7 @@ import javafx.fxml.FXML;
 public class ControlleurMenu {
 
     private Carnet c;
-/*
-    public ControlleurMenu(){
 
-    }*/
     public ControlleurMenu(Carnet carnet){
         this.c=carnet;
     }
