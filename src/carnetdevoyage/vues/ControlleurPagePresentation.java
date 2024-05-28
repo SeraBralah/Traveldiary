@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class ControlleurPagePresentation implements Observateur {
@@ -42,16 +43,14 @@ public class ControlleurPagePresentation implements Observateur {
         this.listviewParticipant=new ListView<String>();
     }
 
-
+//TEXTINPUTDIALOG
 
     public void initialize() {
         PagePresentation p = (PagePresentation) c.getPageCourante();
         this.nomauteur.setText(p.getAuteur().getAuteur());
         this.infosauteur.setText(p.getAuteur().getInfos());
+        this.imageauteur.setImage(p.getAuteur().getImageAuteur());
 
-        System.out.println(p.getPresentationCarnet().getDatedebut());
-        System.out.println(p.getPresentationCarnet().getDatefin());
-        System.out.println(p.getPresentationCarnet().getTitre());
 
         StringBuilder s = new StringBuilder(p.getPresentationCarnet().getDatedebut() + " - " + p.getPresentationCarnet().getDatefin());
         this.date.setText(s.toString());
@@ -59,6 +58,16 @@ public class ControlleurPagePresentation implements Observateur {
         this.infosoption.setText(" ");
 
         ajouterParticipant();
+        // si on selectionne un participant dans la listview :
+        this.listviewParticipant.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                this.c.getPagePresentation().getGestionnaire().setParticipantSelectionne(newValue);
+                this.c.getPagePresentation().getGestionnaire().setSelection(true);
+
+            } else this.c.getPagePresentation().getGestionnaire().setSelection(false);
+
+        });
+
 
     }
 
@@ -67,7 +76,6 @@ public class ControlleurPagePresentation implements Observateur {
 
         for (Participant participant : this.c.getPagePresentation().getGestionnaire()) {
             noms.add(participant.getNom());
-            System.out.println(participant.getNom());
         }
 
         this.listviewParticipant.setItems(noms);
@@ -80,6 +88,7 @@ public class ControlleurPagePresentation implements Observateur {
             this.infosauteur.setText(p.getAuteur().getInfos());
         }
     }
+
 
 
     @Override

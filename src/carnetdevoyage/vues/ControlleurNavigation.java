@@ -26,14 +26,18 @@ public class ControlleurNavigation {
 
     @FXML
     public void initialize() {
-        this.nbPage.setText((c.getNumPageCourante()+1)+"/"+(c.getNbPage()+1));
+        this.nbPage.setText((c.getNumPageCourante()+1)+"/"+(c.getNbPage()));
     }
 
     @FXML
     void pageSuivante(ActionEvent event) throws IOException {
-        if(c.getNumPageCourante()!=c.nbPage()) {
+        if(c.getNumPageCourante()==c.getNbPage()) {
+            c.reculerPage();
+        } else {
             c.avancerPage();
-            afficherPageDestination(event);
+            if (c.getNumPageCourante() != c.nbPage()) {
+                afficherPageDestination(event);
+            }
         }
     }
 
@@ -44,6 +48,8 @@ public class ControlleurNavigation {
             if(c.getPageCourante().estPresentation()) afficherPagePresentation(event);
             else afficherPageDestination(event);
         }
+
+
 
 
 

@@ -1,5 +1,7 @@
 package carnetdevoyage.carnet.presentation;
 
+import javafx.scene.image.Image;
+
 /**
  * Classe AuteurCarnet
  */
@@ -7,6 +9,7 @@ public class AuteurCarnet {
     private String auteur;
     private String infos;
     private String photoAuteur;
+    private Image imageAuteur;
 
     /**
      * Constructeur de la classe AuteurCarnet, définit le nom de l'auteur
@@ -64,6 +67,14 @@ public class AuteurCarnet {
      */
     public String getPhotoAuteur() {
         return photoAuteur;
+    }
+
+    public void setImageAuteur(Image imageAuteur) {
+        this.imageAuteur = imageAuteur;
+    }
+
+    public Image getImageAuteur() {
+        return imageAuteur;
     }
 
     @Override

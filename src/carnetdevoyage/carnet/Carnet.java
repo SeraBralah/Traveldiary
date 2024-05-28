@@ -46,6 +46,7 @@ public class Carnet extends SujetObserve implements Iterable<Pages> {
 
     public void supprimerPageDestination(int numPage){
         this.pages.remove(numPage);
+        this.nbPage--;
     }
 
     /**
@@ -60,7 +61,9 @@ public class Carnet extends SujetObserve implements Iterable<Pages> {
      * On se déplace d'une page
      */
     public void avancerPage(){
-        if(this.nbPage>this.pageCourante) this.pageCourante+=1;
+        if(this.nbPage>this.pageCourante) {
+            this.pageCourante += 1;
+        }
     }
 
     /**
@@ -69,6 +72,7 @@ public class Carnet extends SujetObserve implements Iterable<Pages> {
     public void reculerPage(){
         if(this.pageCourante!=0) this.pageCourante-=1;
     }
+
 
     @Override
     public Iterator<Pages> iterator() {

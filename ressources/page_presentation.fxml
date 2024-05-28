@@ -62,7 +62,7 @@
                   </Label>
                   <ImageView fx:id="imageauteur" fitHeight="235.0" fitWidth="234.0" focusTraversable="true" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" translateX="80.0">
                      <image>
-                        <Image url="@/images/default/auteur.jpg" />
+
                      </image>
                      <cursor>
                         <Cursor fx:constant="DEFAULT" />

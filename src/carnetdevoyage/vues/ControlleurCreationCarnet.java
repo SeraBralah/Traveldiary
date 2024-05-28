@@ -17,8 +17,17 @@ import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 public class ControlleurCreationCarnet {
 
@@ -39,6 +48,7 @@ public class ControlleurCreationCarnet {
     private AuteurCarnet a;
     private PagePresentation p;
 
+
     public ControlleurCreationCarnet(Carnet c,AuteurCarnet a) {
         this.c = c;
         this.a = a;
@@ -46,7 +56,40 @@ public class ControlleurCreationCarnet {
 
     @FXML
     void ChercherImage(ActionEvent event) {
-        //récupérer l'image
+        String cheminImage = "../ImagesCarnet";
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"), //filtre pour les images
+                new FileChooser.ExtensionFilter("All Files", "*.*")
+        );
+        File imageSelect = fileChooser.showOpenDialog(new Stage()); //ouverture de l'explorateur de fichier
+        if (imageSelect != null) {
+            File imageBase = new File(imageSelect.getAbsolutePath());
+            try{
+                Path destinationFichier = Paths.get(cheminImage);
+                if(!Files.exists(destinationFichier)){ //si le dossier est pas encore créé (à revoir pour sauvegarde)
+                    Files.createDirectories(destinationFichier);
+                }
+                //on change le chemin :
+                Path destinationImage = destinationFichier.resolve(imageSelect.getName());
+                //on copie le fichier :
+                Files.copy(imageSelect.toPath(),destinationImage, StandardCopyOption.REPLACE_EXISTING);
+
+                Image image = new Image(destinationImage.toUri().toString());
+
+                this.a.setImageAuteur(image);
+
+            } catch (IOException e){
+                Alert a = new Alert(Alert.AlertType.ERROR);
+                a.setTitle("Erreur");
+                a.setHeaderText(null);
+                a.setContentText(e.getMessage());
+                a.showAndWait();
+            }
+
+            this.a.setPhotoAuteur(imageSelect.getPath());
+            
+        }
     }
 
 
@@ -96,7 +139,6 @@ public class ControlleurCreationCarnet {
                     c.ajouterPageDestination(pd);
 
                 }
-                System.out.println(c);
                 this.carnetvalide=true;
             }
         } catch (DateException e) {

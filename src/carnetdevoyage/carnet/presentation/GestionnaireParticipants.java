@@ -9,12 +9,15 @@ import java.util.Iterator;
  */
 public class GestionnaireParticipants implements Iterable<Participant> {
     private ArrayList<Participant> listeparticipants;
+    private Participant participantSelectionne;
+    private boolean selection;
 
     /**
      * Constructeur du gestionnaire de Participants
      */
     public GestionnaireParticipants(){
         listeparticipants = new ArrayList<>();
+        this.selection=false;
     }
 
     /**
@@ -40,6 +43,26 @@ public class GestionnaireParticipants implements Iterable<Participant> {
     @Override
     public Iterator<Participant> iterator() {
         return this.listeparticipants.iterator();
+    }
+
+    public void setParticipantSelectionne(String participantSelectionne) {
+        for(Participant p : listeparticipants) {
+            if (p.getNom().equals(participantSelectionne)) {
+                this.participantSelectionne = p;
+            }
+        }
+    }
+
+    public void setSelection(boolean selection) {
+        this.selection = selection;
+    }
+
+    public Participant getParticipantSelectionne() {
+        return participantSelectionne;
+    }
+
+    public boolean getSelection() {
+        return this.selection;
     }
 
     @Override

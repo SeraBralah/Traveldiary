@@ -54,7 +54,7 @@ public class ControlleurAccueil {
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.setOnHidden(windowEvent -> {
-            if (carnet.nbPage() != 0) {
+            if (carnet.getNbPage() != 0) {
                 try {
                     FXMLLoader menuLoader = new FXMLLoader(getClass().getResource("/page_presentation.fxml"));
                     menuLoader.setControllerFactory(ic -> {

@@ -13,7 +13,7 @@
                <accelerator>
                   <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                </accelerator></MenuItem>
-            <MenuItem mnemonicParsing="false" text="Quitter" />
+            <MenuItem mnemonicParsing="false" onAction="#Quitter" text="Quitter" />
       </items>
     </Menu>
     <Menu mnemonicParsing="false" text="Editions">
@@ -28,8 +28,13 @@
                 <MenuItem mnemonicParsing="false" onAction="#ajouterParticipant" text="Participant" />
               </items>
             </Menu>
-            <MenuItem mnemonicParsing="false" onAction="#ModifierLaPage" text="Modifier la page" />
-            <MenuItem mnemonicParsing="false" onAction="#SupprimerUnePage" text="Supprimer la page" />
+            <MenuItem fx:id="modifierpage" mnemonicParsing="false" onAction="#ModifierLaPage" text="Modifier la page" />
+            <Menu mnemonicParsing="false" text="Supprimer">
+               <items>
+                  <MenuItem fx:id="supprimerPage" mnemonicParsing="false" onAction="#SupprimerUnePage" text="Page" />
+                  <MenuItem fx:id="supprimerParticipant" mnemonicParsing="false" onAction="#SupprimerParticipant" text="Participant" />
+               </items>
+            </Menu>
       </items>
     </Menu>
   </menus>
