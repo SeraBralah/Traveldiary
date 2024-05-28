@@ -78,6 +78,7 @@ public class ControlleurMenu {
         System.out.println(this.c.getPagePresentation().getGestionnaire());
         Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
         stage.close();
+        this.c.notifierObservateurs();
     }
 
 

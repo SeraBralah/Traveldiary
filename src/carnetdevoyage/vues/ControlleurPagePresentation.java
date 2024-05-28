@@ -39,9 +39,11 @@ public class ControlleurPagePresentation implements Observateur {
     public ControlleurPagePresentation(Carnet c){
         this.c=c;
         this.c.ajouterObservateur(this);
+        this.listviewParticipant=new ListView<String>();
     }
 
-    @FXML
+
+
     public void initialize() {
         PagePresentation p = (PagePresentation) c.getPageCourante();
         this.nomauteur.setText(p.getAuteur().getAuteur());
@@ -51,14 +53,16 @@ public class ControlleurPagePresentation implements Observateur {
         System.out.println(p.getPresentationCarnet().getDatefin());
         System.out.println(p.getPresentationCarnet().getTitre());
 
-        StringBuilder s =new StringBuilder(p.getPresentationCarnet().getDatedebut() + " - " + p.getPresentationCarnet().getDatefin());
+        StringBuilder s = new StringBuilder(p.getPresentationCarnet().getDatedebut() + " - " + p.getPresentationCarnet().getDatefin());
         this.date.setText(s.toString());
-       this.titreCarnet.setText(p.getPresentationCarnet().getTitre());
+        this.titreCarnet.setText(p.getPresentationCarnet().getTitre());
         this.infosoption.setText(" ");
 
-        this.listviewParticipant = new ListView<String>();
+        ajouterParticipant();
 
+    }
 
+    public void ajouterParticipant(){
         ObservableList<String> noms = FXCollections.observableArrayList();
 
         for (Participant participant : this.c.getPagePresentation().getGestionnaire()) {
@@ -67,7 +71,6 @@ public class ControlleurPagePresentation implements Observateur {
         }
 
         this.listviewParticipant.setItems(noms);
-
     }
 
     public void majAuteur(){
@@ -82,5 +85,6 @@ public class ControlleurPagePresentation implements Observateur {
     @Override
     public void reagir() {
         majAuteur();
+        ajouterParticipant();
     }
 }
