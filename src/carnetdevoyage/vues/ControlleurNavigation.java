@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class ControlleurNavigation {
+public class ControlleurNavigation implements Observateur{
 
     @FXML
     private Label nbPage;
@@ -22,11 +22,12 @@ public class ControlleurNavigation {
     private  Carnet c;
     public ControlleurNavigation(Carnet carnet) {
         this.c=carnet;
+        this.c.ajouterObservateur(this);
     }
 
     @FXML
     public void initialize() {
-        this.nbPage.setText((c.getNumPageCourante()+1)+"/"+(c.getNbPage()));
+        setnumPage();
     }
 
     @FXML
@@ -45,10 +46,10 @@ public class ControlleurNavigation {
             if(c.getPageCourante().estPresentation()) afficherPagePresentation(event);
             else afficherPageDestination(event);
         }
+    }
 
-
-
-
+    public void setnumPage(){
+        this.nbPage.setText((c.getNumPageCourante()+1)+"/"+(c.getNbPage()));
 
     }
 
@@ -101,5 +102,10 @@ public class ControlleurNavigation {
         stage.setScene(new Scene(root));
         stage.show();
 
+    }
+
+    @Override
+    public void reagir() {
+        setnumPage();
     }
 }

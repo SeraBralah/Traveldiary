@@ -3,6 +3,7 @@ package carnetdevoyage.vues;
 
 import carnetdevoyage.carnet.Carnet;
 import carnetdevoyage.carnet.pages.PageDestination;
+import carnetdevoyage.carnet.presentation.PagePresentation;
 import carnetdevoyage.carnet.presentation.Participant;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -39,9 +40,6 @@ public class ControlleurMenu implements Observateur{
     private Menu modifier;
 
     private Stage stage;
-
-    @FXML
-    private MenuItem modifierpage;
 
     @FXML
     private MenuItem supprimerPage;
@@ -124,12 +122,20 @@ public class ControlleurMenu implements Observateur{
 
     @FXML
     void infosSuppCarnet(ActionEvent event) {
-
+        if(this.c.getPageCourante().estPresentation()) {
+            PagePresentation p = (PagePresentation) this.c.getPageCourante();
+            p.getAuteur().setInfossupp((boiteDialogue("Ajoutez quelques informations supplémentaires : ")));
+            this.c.notifierObservateurs();
+        }
     }
 
     @FXML
     void titreCarnet(ActionEvent event) {
-
+        if(this.c.getPageCourante().estPresentation()) {
+            PagePresentation p = (PagePresentation) this.c.getPageCourante();
+            p.getPresentationCarnet().setTitre(boiteDialogue("Donnez un titre personnalisez à votre carnet : "));
+            this.c.notifierObservateurs();
+        }
     }
 
     @FXML
@@ -205,23 +211,11 @@ public class ControlleurMenu implements Observateur{
 
     @FXML
     void ajouterParticipant(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ajouter_participant.fxml"));
-        loader.setControllerFactory(ic -> {
-            if (ic == ControlleurMenu.class) {
-                return new ControlleurMenu(this.c);
-            } else {
-                try {
-                    return ic.getDeclaredConstructor().newInstance();
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        });
-        Parent root = loader.load();
-        this.stage = new Stage();
-        stage.setTitle("Carnet de voyage");
-        stage.setScene(new Scene(root));
-        stage.show();
+        if(this.c.getPageCourante().estPresentation()) {
+            PagePresentation p = (PagePresentation) this.c.getPageCourante();
+            p.getGestionnaire().ajouterParticipants(new Participant(boiteDialogue("Ajoutez un participant : ")));
+            this.c.notifierObservateurs();
+        }
     }
 
     @FXML

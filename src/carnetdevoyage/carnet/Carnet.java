@@ -1,5 +1,8 @@
 package carnetdevoyage.carnet;
 
+import carnetdevoyage.carnet.pages.DescriptionDestination;
+import carnetdevoyage.carnet.pages.ImageDestination;
+import carnetdevoyage.carnet.pages.LocalisationDestination;
 import carnetdevoyage.carnet.pages.PageDestination;
 import carnetdevoyage.carnet.presentation.PagePresentation;
 
@@ -30,7 +33,7 @@ public class Carnet extends SujetObserve implements Iterable<Pages> {
         this.pagePresentation = pagePresentation;
         this.pages.add(pagePresentation);
         this.nbPage++;
-        notifierObservateurs();
+        this.notifierObservateurs();
     }
 
     /**
@@ -38,10 +41,11 @@ public class Carnet extends SujetObserve implements Iterable<Pages> {
      * @param pageDestination
      */
     public void ajouterPageDestination(PageDestination pageDestination) {
+        pageDestination.setImageDestination(new ImageDestination());
         this.pageDestinations.add(pageDestination);
         this.pages.add(pageDestination);
         this.nbPage++;
-        notifierObservateurs();
+        this.notifierObservateurs();
     }
 
     public void supprimerPageDestination(int numPage){

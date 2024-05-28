@@ -54,8 +54,8 @@ public class ControlleurPagePresentation implements Observateur {
 
         StringBuilder s = new StringBuilder(p.getPresentationCarnet().getDatedebut() + " - " + p.getPresentationCarnet().getDatefin());
         this.date.setText(s.toString());
-        this.titreCarnet.setText(p.getPresentationCarnet().getTitre());
-        this.infosoption.setText(" ");
+        setTitreCarnet();
+        setInfosoption();
 
         ajouterParticipant();
         // si on selectionne un participant dans la listview :
@@ -67,8 +67,14 @@ public class ControlleurPagePresentation implements Observateur {
             } else this.c.getPagePresentation().getGestionnaire().setSelection(false);
 
         });
+    }
 
+    public void setTitreCarnet(){
+        this.titreCarnet.setText(c.getPagePresentation().getPresentationCarnet().getTitre());
+    }
 
+    public void setInfosoption(){
+        this.infosoption.setText(c.getPagePresentation().getAuteur().getInfossupp());
     }
 
     public void ajouterParticipant(){
@@ -95,5 +101,7 @@ public class ControlleurPagePresentation implements Observateur {
     public void reagir() {
         majAuteur();
         ajouterParticipant();
+        setInfosoption();
+        setTitreCarnet();
     }
 }

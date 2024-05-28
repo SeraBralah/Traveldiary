@@ -10,6 +10,7 @@ public class AuteurCarnet {
     private String infos;
     private String photoAuteur;
     private Image imageAuteur;
+    private String infossupp;
 
     /**
      * Constructeur de la classe AuteurCarnet, définit le nom de l'auteur
@@ -19,6 +20,7 @@ public class AuteurCarnet {
         this.auteur = auteur;
         this.infos = "informations manquantes";
         this.photoAuteur=" ";
+        this.infossupp=" ";
     }
 
     /**
@@ -75,6 +77,14 @@ public class AuteurCarnet {
 
     public Image getImageAuteur() {
         return imageAuteur;
+    }
+
+    public void setInfossupp(String infossupp) {
+        this.infossupp = infossupp;
+    }
+
+    public String getInfossupp() {
+        return infossupp;
     }
 
     @Override
