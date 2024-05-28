@@ -35,6 +35,18 @@ public class PageDestination extends Pages {
         this.numPage = numPage;
     }
 
+    public DescriptionDestination getDescriptionDestination() {
+        return descriptionDestination;
+    }
+
+    public LocalisationDestination getLocalisationDestination() {
+        return localisationDestination;
+    }
+
+    public ImageDestination getImageDestination() {
+        return imageDestination;
+    }
+
     @Override
     public String toString() {
         return "---------------------------------- \n PageDestination : \n" + descriptionDestination + localisationDestination +

@@ -21,6 +21,10 @@ public class LocalisationDestination {
         this.localisation = localisation;
     }
 
+    public String getLocalisation() {
+        return localisation;
+    }
+
     @Override
     public String toString() {
         return "Localisation : " + localisation + '\n' ;

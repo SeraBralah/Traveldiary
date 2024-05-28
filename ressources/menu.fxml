@@ -16,7 +16,7 @@
             <MenuItem mnemonicParsing="false" onAction="#Quitter" text="Quitter" />
       </items>
     </Menu>
-    <Menu mnemonicParsing="false" text="Editions">
+    <Menu fx:id="editions" mnemonicParsing="false" text="Editions">
       <items>
             <Menu mnemonicParsing="false" text="Ajouter">
               <items>
@@ -26,6 +26,16 @@
                      </accelerator>
                   </MenuItem>
                 <MenuItem mnemonicParsing="false" onAction="#ajouterParticipant" text="Participant" />
+              </items>
+            </Menu>
+            <Menu fx:id="modifier" mnemonicParsing="false" text="Modifier">
+              <items>
+                <MenuItem fx:id="titreCarnet" mnemonicParsing="false" onAction="#titreCarnet" text="Titre du carnet" />
+                  <MenuItem fx:id="infosSuppCarnet" mnemonicParsing="false" onAction="#infosSuppCarnet" text="Informations supplémentaires" />
+                  <MenuItem fx:id="ajoutImage" mnemonicParsing="false" onAction="#ajouterImageDestination" text="Ajouter une image" />
+                  <MenuItem fx:id="infosJournee" mnemonicParsing="false" onAction="#InfosJourneeDest" text="Informations sur la journée" />
+                  <MenuItem fx:id="localDest" mnemonicParsing="false" onAction="#ModifLocalDest" text="Modifier la localisation" />
+                  <MenuItem fx:id="titreDest" mnemonicParsing="false" onAction="#titreDest" text="Titre de la page" />
               </items>
             </Menu>
             <MenuItem fx:id="modifierpage" mnemonicParsing="false" onAction="#ModifierLaPage" text="Modifier la page" />

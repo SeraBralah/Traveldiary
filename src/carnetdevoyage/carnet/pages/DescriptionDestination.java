@@ -20,6 +20,22 @@ public class DescriptionDestination {
         this.texte = texte;
     }
 
+    public void setTitre(String titre) {
+        this.titre = titre;
+    }
+
+    public String getTitre() {
+        return titre;
+    }
+
+    public String getTexte() {
+        return texte;
+    }
+
+    public void setTexte(String texte) {
+        this.texte = texte;
+    }
+
     @Override
     public String toString() {
         return "\n Destination : " + titre + " \n" + texte + "\n";

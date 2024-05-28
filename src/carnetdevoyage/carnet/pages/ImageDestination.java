@@ -1,14 +1,17 @@
 package carnetdevoyage.carnet.pages;
 
+import javafx.scene.image.Image;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 
 /**
  * Classe contenant les liens des images de la page
  */
-public class ImageDestination implements Iterable<String>{
-    private HashMap<Integer,String> cheminsImages;
+public class ImageDestination implements Iterable<Image>{
+    private Image[] tabImage;
     private int id;
 
 
@@ -16,48 +19,43 @@ public class ImageDestination implements Iterable<String>{
      * Constructeur de la classe des images de la destination
      */
     public ImageDestination(){
-        this.cheminsImages = new HashMap<>();
         this.id = 0;
-    }
-
-    /**
-     * Ajoute une image à la collection
-     * @param chemin
-     */
-    public void ajouterUneImage(String chemin){
-        //VOir si on rajoute des limites de nombre d'image :
-
-        this.cheminsImages.put(id,chemin);
-        this.id++;
-    }
-
-    /**
-     * Supprime une image de la collection
-     * @param id
-     */
-    public void supprimerUneImage(int id){
-        this.cheminsImages.remove(id);
+        this.tabImage = new Image[3];
     }
 
 
-    /**
-     * Récupère le chemin d'une image en fonction de son identifiant
-     * @param id
-     * @return
-     */
-    public String getChemin(int id){
-        return this.cheminsImages.get(id);
+
+    public void ajouterImage(Image image){
+        if(this.id!=3){
+            this.tabImage[this.id] = image;
+            this.id++;
+        } else{
+            this.id=0;
+            this.tabImage[this.id] = image;
+            this.id++;
+        }
     }
 
-    @Override
-    public Iterator<String> iterator() {
-        return cheminsImages.values().iterator();
+    public void supprimerImage(int id){
+        this.tabImage[id] = null;
+        this.id--;
     }
+    public Image getImage(int id){
+        return this.tabImage[id];
+    }
+
+
+
 
     @Override
     public String toString() {
         return "\n Image Destination " +
-                "chemins : " + cheminsImages +
+                tabImage +
                 " \n";
+    }
+
+    @Override
+    public Iterator<Image> iterator() {
+        return Arrays.stream(tabImage).iterator();
     }
 }

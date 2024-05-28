@@ -9,12 +9,19 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.Optional;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class ControlleurMenu implements Observateur{
 
@@ -24,6 +31,12 @@ public class ControlleurMenu implements Observateur{
 
     private Carnet c;
 
+
+
+    @FXML
+    private Menu editions;
+    @FXML
+    private Menu modifier;
 
     private Stage stage;
 
@@ -36,6 +49,97 @@ public class ControlleurMenu implements Observateur{
     @FXML
     private MenuItem supprimerParticipant;
 
+    @FXML
+    private MenuItem titreCarnet;
+
+    @FXML
+    private MenuItem infosSuppCarnet;
+
+    @FXML
+    private MenuItem ajoutImage;
+
+    @FXML
+    private MenuItem infosJournee;
+
+    @FXML
+    private MenuItem localDest;
+
+    @FXML
+    private MenuItem titreDest;
+
+    @FXML
+    void InfosJourneeDest(ActionEvent event) {
+        if(this.c.getPageCourante().estDestination()) {
+            PageDestination p = (PageDestination) this.c.getPageCourante();
+            p.getDescriptionDestination().setTexte(boiteDialogue("Modifier les informations du la journée :"));
+            this.c.notifierObservateurs();
+        }
+    }
+
+    @FXML
+    void ModifLocalDest(ActionEvent event) {
+        if(this.c.getPageCourante().estDestination()) {
+            PageDestination p = (PageDestination) this.c.getPageCourante();
+            p.getLocalisationDestination().setLocalisation(boiteDialogue("Modifier la destination :"));
+            this.c.notifierObservateurs();
+        }
+    }
+
+
+    @FXML
+    void ajouterImageDestination(ActionEvent event) {
+        if (this.c.getPageCourante().estDestination()) {
+            PageDestination p = (PageDestination) this.c.getPageCourante();
+            String cheminImage = "../ImagesCarnet";
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.getExtensionFilters().addAll(
+                    new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"),
+                    new FileChooser.ExtensionFilter("All Files", "*.*")
+            );
+
+            File imageSelect = fileChooser.showOpenDialog(new Stage());
+            if (imageSelect != null) {
+                try {
+                    Path destinationFichier = Paths.get(cheminImage);
+                    if (!Files.exists(destinationFichier)) {
+                        Files.createDirectories(destinationFichier);
+                    }
+                    Path destinationImage = destinationFichier.resolve(imageSelect.getName());
+                    Files.copy(imageSelect.toPath(), destinationImage, StandardCopyOption.REPLACE_EXISTING);
+                    Image image = new Image(destinationImage.toUri().toString());
+                    p.getImageDestination().ajouterImage(image);
+                } catch (IOException e) {
+                    Alert a = new Alert(Alert.AlertType.ERROR);
+                    a.setTitle("Erreur");
+                    a.setHeaderText(null);
+                    a.setContentText(e.getMessage());
+                    a.showAndWait();
+                }
+            }
+        }
+        this.c.notifierObservateurs();
+    }
+
+
+
+    @FXML
+    void infosSuppCarnet(ActionEvent event) {
+
+    }
+
+    @FXML
+    void titreCarnet(ActionEvent event) {
+
+    }
+
+    @FXML
+    void titreDest(ActionEvent event) {
+        if(this.c.getPageCourante().estDestination()) {
+            PageDestination p = (PageDestination) this.c.getPageCourante();
+            p.getDescriptionDestination().setTitre(boiteDialogue("Modifier le titre de la destination"));
+            this.c.notifierObservateurs();
+        }
+    }
 
 
 
@@ -46,8 +150,21 @@ public class ControlleurMenu implements Observateur{
     @FXML
     public void initialize() {
         //disable les boutons inutiles ici
-        if(this.c.getNbPage()!=0){
-        if(this.c.getPageCourante().estPresentation()) this.modifierpage.setDisable(true);}
+        if (this.c.getNbPage() != 0) {
+            if (this.c.getPageCourante().estPresentation()) {
+                this.ajoutImage.setVisible(false);
+                this.infosJournee.setVisible(false);
+                this.localDest.setVisible(false);
+                this.titreDest.setVisible(false);
+
+            } else if (this.c.getPageCourante().estDestination()) {
+                this.infosSuppCarnet.setVisible(false);
+                this.titreCarnet.setVisible(false);
+
+            }
+        } else {
+            this.editions.setVisible(false);
+        }
     }
 
     @FXML
@@ -110,10 +227,20 @@ public class ControlleurMenu implements Observateur{
     @FXML
     void ValiderParticipant(ActionEvent event) {
         this.c.getPagePresentation().getGestionnaire().ajouterParticipants(new Participant(this.nomParticipant.getText()));
-        System.out.println(this.c.getPagePresentation().getGestionnaire());
         Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
         stage.close();
         this.c.notifierObservateurs();
+    }
+
+    public String boiteDialogue(String demande){
+        AtomicReference<String> res =  new AtomicReference<>();
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Editions");
+        dialog.setHeaderText(demande);
+
+        Optional<String> result = dialog.showAndWait();
+        result.ifPresent(text -> res.set(text));
+        return res.toString();
     }
 
 

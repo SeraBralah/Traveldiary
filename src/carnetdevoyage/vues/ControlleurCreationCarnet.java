@@ -135,6 +135,8 @@ public class ControlleurCreationCarnet {
                 for (int i = 0; i < nbjour; i++) {
                     //ajouter les pages dans le carnet
                     PageDestination pd = new PageDestination();
+                    pd.setImageDestination(new ImageDestination());
+                    pd.setLocalisationDestination(new LocalisationDestination());
                     pd.setNumPage(i + 1);
                     c.ajouterPageDestination(pd);
 
