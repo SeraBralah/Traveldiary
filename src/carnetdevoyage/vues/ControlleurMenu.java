@@ -184,26 +184,34 @@ public class ControlleurMenu implements Observateur{
 
     @FXML
     void Sauvegarder(ActionEvent event) {
+        File emplacement = obtenirCheminSauvegarde();
+        if (emplacement != null) {
+            this.c.sauvegarde(emplacement);
+        }
+    }
+
+    private File obtenirCheminSauvegarde() {
         Stage stage1 = new Stage();
         File file = creerRepertoireSauvegarde(stage1);
 
-
-        if (file != null) { //on regarde si le fichier existe
+        if (file != null) {
             String nomcarnet = "Carnet_de_" + this.c.getPagePresentation().getAuteur().getAuteur();
             nomcarnet = nomcarnet.replaceAll(" ", "_");
             Path cheminSauvegarde = file.toPath().resolve(nomcarnet);
             try {
-                Files.createDirectories(cheminSauvegarde); // Créez le dossier de sauvegarde
-                //chemindesauvegarde
-                // Lancer la sauvegarde ici à revoir
-                sauvegarderCarnet(cheminSauvegarde,this.c);
+                Files.createDirectories(cheminSauvegarde);
+                String nomfichier = "sauvegarde.json";
+                Path cheminfinal = cheminSauvegarde.resolve(nomfichier);
+                return cheminfinal.toFile();
             } catch (IOException e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText("Erreur lors de la création du dossier de sauvegarde : " + e.getMessage());
                 alert.showAndWait();
             }
         }
+        return null;
     }
+
 
     public File creerRepertoireSauvegarde(Stage stage1) {
         DirectoryChooser repertoire = new DirectoryChooser();

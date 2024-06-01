@@ -53,9 +53,7 @@ public class ControlleurPagePresentation implements Observateur {
         this.nomauteur.setText(p.getAuteur().getAuteur());
         this.infosauteur.setText(p.getAuteur().getInfos());
         if(p.getAuteur().getImageAuteur()!=null) {
-            System.out.println(p.getAuteur().getImageAuteur());
             String imagePath = p.getAuteur().getImageAuteur();
-            System.out.println(imagePath);
             File file = new File(imagePath);
 
             if (file.exists()) {

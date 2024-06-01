@@ -74,7 +74,6 @@ public class ControlleurCreationCarnet {
                 Path destinationImage = destinationFichier.resolve(imageSelect.getName());
                 //on copie le fichier :
                 Files.copy(imageSelect.toPath(),destinationImage, StandardCopyOption.REPLACE_EXISTING);
-
                 this.a.setImageAuteur(destinationImage.toUri().toString());
 
             } catch (IOException e){
@@ -84,9 +83,7 @@ public class ControlleurCreationCarnet {
                 a.setContentText(e.getMessage());
                 a.showAndWait();
             }
-
             this.a.setImageAuteur(imageSelect.getPath());
-            
         }
     }
 
@@ -112,7 +109,6 @@ public class ControlleurCreationCarnet {
 
     void ajouterAuteur(){
         a.setAuteur(nomAuteur.getText());
-
     }
 
     void ajouterInfosAuteur(){
