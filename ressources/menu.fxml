@@ -38,7 +38,6 @@
                   <MenuItem fx:id="titreDest" mnemonicParsing="false" onAction="#titreDest" text="Titre de la page" />
               </items>
             </Menu>
-            <MenuItem fx:id="modifierpage" mnemonicParsing="false" onAction="#ModifierLaPage" text="Modifier la page" />
             <Menu mnemonicParsing="false" text="Supprimer">
                <items>
                   <MenuItem fx:id="supprimerPage" mnemonicParsing="false" onAction="#SupprimerUnePage" text="Page" />

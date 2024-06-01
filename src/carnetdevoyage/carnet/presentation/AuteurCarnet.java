@@ -9,7 +9,6 @@ public class AuteurCarnet {
     private String auteur;
     private String infos;
     private String photoAuteur;
-    private Image imageAuteur;
     private String infossupp;
 
     /**
@@ -19,7 +18,7 @@ public class AuteurCarnet {
     public AuteurCarnet(String auteur){
         this.auteur = auteur;
         this.infos = "informations manquantes";
-        this.photoAuteur=" ";
+        //qthis.photoAuteur="";
         this.infossupp=" ";
     }
 
@@ -40,14 +39,6 @@ public class AuteurCarnet {
     }
 
     /**
-     * Set la photo de l'auteur du carnet
-     * @param photoAuteur
-     */
-    public void setPhotoAuteur(String photoAuteur) {
-        this.photoAuteur = photoAuteur;
-    }
-
-    /**
      *
      * @return nom de l'auteur
      */
@@ -64,19 +55,15 @@ public class AuteurCarnet {
     }
 
     /**
-     *
-     * @return la photo de l'auteur
+     * Set la photo de l'auteur du carnet
+     * @param imageAuteur
      */
-    public String getPhotoAuteur() {
+    public void setImageAuteur(String imageAuteur) {
+        this.photoAuteur = imageAuteur;
+    }
+
+    public String getImageAuteur() {
         return photoAuteur;
-    }
-
-    public void setImageAuteur(Image imageAuteur) {
-        this.imageAuteur = imageAuteur;
-    }
-
-    public Image getImageAuteur() {
-        return imageAuteur;
     }
 
     public void setInfossupp(String infossupp) {

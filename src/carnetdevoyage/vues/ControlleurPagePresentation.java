@@ -6,10 +6,13 @@ import carnetdevoyage.carnet.presentation.Participant;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+
+import java.io.File;
 
 public class ControlleurPagePresentation implements Observateur {
 
@@ -49,8 +52,29 @@ public class ControlleurPagePresentation implements Observateur {
         PagePresentation p = (PagePresentation) c.getPageCourante();
         this.nomauteur.setText(p.getAuteur().getAuteur());
         this.infosauteur.setText(p.getAuteur().getInfos());
-        this.imageauteur.setImage(p.getAuteur().getImageAuteur());
+        if(p.getAuteur().getImageAuteur()!=null) {
+            System.out.println(p.getAuteur().getImageAuteur());
+            String imagePath = p.getAuteur().getImageAuteur();
+            System.out.println(imagePath);
+            File file = new File(imagePath);
 
+            if (file.exists()) {
+                try {
+                    // Convert the file path to a URI and then to a string URL
+                    String imageUrl = file.toURI().toString();
+                    Image image = new Image(imageUrl);
+                    this.imageauteur.setImage(image);
+                } catch (IllegalArgumentException e) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText("Problème lors de l'ouverture de l'image");
+                    alert.showAndWait();
+                }
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Problème lors de l'ouverture de l'image");
+                alert.showAndWait();
+            }
+        }
 
         StringBuilder s = new StringBuilder(p.getPresentationCarnet().getDatedebut() + " - " + p.getPresentationCarnet().getDatefin());
         this.date.setText(s.toString());

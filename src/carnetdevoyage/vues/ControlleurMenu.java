@@ -5,6 +5,8 @@ import carnetdevoyage.carnet.Carnet;
 import carnetdevoyage.carnet.pages.PageDestination;
 import carnetdevoyage.carnet.presentation.PagePresentation;
 import carnetdevoyage.carnet.presentation.Participant;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,10 +14,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -86,6 +90,7 @@ public class ControlleurMenu implements Observateur{
 
     @FXML
     void ajouterImageDestination(ActionEvent event) {
+        // récupérer l'image
         if (this.c.getPageCourante().estDestination()) {
             PageDestination p = (PageDestination) this.c.getPageCourante();
             String cheminImage = "../ImagesCarnet";
@@ -96,7 +101,7 @@ public class ControlleurMenu implements Observateur{
             );
 
             File imageSelect = fileChooser.showOpenDialog(new Stage());
-            if (imageSelect != null) {
+            if (imageSelect != null) { //on traite l'image selectionné
                 try {
                     Path destinationFichier = Paths.get(cheminImage);
                     if (!Files.exists(destinationFichier)) {
@@ -104,8 +109,7 @@ public class ControlleurMenu implements Observateur{
                     }
                     Path destinationImage = destinationFichier.resolve(imageSelect.getName());
                     Files.copy(imageSelect.toPath(), destinationImage, StandardCopyOption.REPLACE_EXISTING);
-                    Image image = new Image(destinationImage.toUri().toString());
-                    p.getImageDestination().ajouterImage(image);
+                    p.getImageDestination().ajouterImage(destinationImage.toUri().toString());
                 } catch (IOException e) {
                     Alert a = new Alert(Alert.AlertType.ERROR);
                     a.setTitle("Erreur");
@@ -179,13 +183,49 @@ public class ControlleurMenu implements Observateur{
     }
 
     @FXML
-    void ModifierLaPage(ActionEvent event) {
+    void Sauvegarder(ActionEvent event) {
+        Stage stage1 = new Stage();
+        File file = creerRepertoireSauvegarde(stage1);
 
+
+        if (file != null) { //on regarde si le fichier existe
+            String nomcarnet = "Carnet_de_" + this.c.getPagePresentation().getAuteur().getAuteur();
+            nomcarnet = nomcarnet.replaceAll(" ", "_");
+            Path cheminSauvegarde = file.toPath().resolve(nomcarnet);
+            try {
+                Files.createDirectories(cheminSauvegarde); // Créez le dossier de sauvegarde
+                //chemindesauvegarde
+                // Lancer la sauvegarde ici à revoir
+                sauvegarderCarnet(cheminSauvegarde,this.c);
+            } catch (IOException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Erreur lors de la création du dossier de sauvegarde : " + e.getMessage());
+                alert.showAndWait();
+            }
+        }
     }
 
-    @FXML
-    void Sauvegarder(ActionEvent event) {
+    public File creerRepertoireSauvegarde(Stage stage1) {
+        DirectoryChooser repertoire = new DirectoryChooser();
+        repertoire.setTitle("Choisir un dossier pour sauvegarder le carnet : ");
+        return repertoire.showDialog(stage1);
+    }
 
+    public void sauvegarderCarnet(Path chemin, Carnet carnet) {
+        // Convertir le carnet en JSON
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String carnetJson = gson.toJson(carnet);
+
+        // Créer le fichier de sauvegarde
+        File fichierSauvegarde = chemin.resolve("carnet.json").toFile();
+        try (FileWriter writer = new FileWriter(fichierSauvegarde)) {
+            writer.write(carnetJson);
+            System.out.println("Carnet sauvegardé avec succès à : " + fichierSauvegarde.getAbsolutePath());
+        } catch (IOException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Erreur lors de la sauvegarde du carnet : " + e.getMessage());
+            alert.showAndWait();
+        }
     }
 
 
@@ -206,6 +246,7 @@ public class ControlleurMenu implements Observateur{
     @FXML
     void SupprimerUnePage(ActionEvent event) {
         if(this.c.getPageCourante().estDestination()) this.c.supprimerPageDestination(this.c.getNumPageCourante());
+        this.c.notifierObservateurs();
     }
 
 

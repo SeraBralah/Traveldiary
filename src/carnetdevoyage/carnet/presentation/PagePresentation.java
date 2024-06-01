@@ -8,6 +8,7 @@ public class PagePresentation extends Pages {
     private PresentationCarnet presentationCarnet;
 
     public PagePresentation(){
+
     }
 
     public AuteurCarnet getAuteur() {

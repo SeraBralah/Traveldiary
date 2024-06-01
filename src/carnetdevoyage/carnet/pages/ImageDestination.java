@@ -6,56 +6,52 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
-
-/**
- * Classe contenant les liens des images de la page
- */
-public class ImageDestination implements Iterable<Image>{
-    private Image[] tabImage;
+public class ImageDestination {
+    private String[] tabChemin;
     private int id;
 
-
     /**
-     * Constructeur de la classe des images de la destination
+     * Constructeur de la classe Image Destination
      */
-    public ImageDestination(){
+    public ImageDestination() {
         this.id = 0;
-        this.tabImage = new Image[3];
+        this.tabChemin = new String[3];
     }
 
-
-
-    public void ajouterImage(Image image){
-        if(this.id!=3){
-            this.tabImage[this.id] = image;
+    public void ajouterImage(String chemin) {
+        Image image = new Image(chemin);
+        if (this.id != 3) {
+            this.tabChemin[this.id] = chemin;
             this.id++;
-        } else{
-            this.id=0;
-            this.tabImage[this.id] = image;
+        } else {
+            this.id = 0;
+            this.tabChemin[this.id] = chemin;
             this.id++;
         }
     }
 
-    public void supprimerImage(int id){
-        this.tabImage[id] = null;
+    public void supprimerImage(int id) {
+        this.tabChemin[id] = null;
         this.id--;
     }
-    public Image getImage(int id){
-        return this.tabImage[id];
+
+    public String getImage(int id) {
+        return this.tabChemin[id];
     }
 
+    public String[] getTabChemin() {
+        return tabChemin;
+    }
 
-
+    public String[] getTabImage() {
+        return tabChemin;
+    }
 
     @Override
     public String toString() {
         return "\n Image Destination " +
-                tabImage +
+                Arrays.toString(tabChemin) +
                 " \n";
     }
 
-    @Override
-    public Iterator<Image> iterator() {
-        return Arrays.stream(tabImage).iterator();
-    }
 }

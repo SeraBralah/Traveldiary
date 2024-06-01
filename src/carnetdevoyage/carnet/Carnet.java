@@ -49,17 +49,15 @@ public class Carnet extends SujetObserve implements Iterable<Pages> {
     }
 
     public void supprimerPageDestination(int numPage){
-        this.pages.remove(numPage);
-        this.nbPage--;
+        if(this.getPageCourante().estDestination()) {
+            if (this.nbPage != 2) {
+                this.pages.remove(numPage);
+                this.nbPage--;
+                this.pageCourante--;
+            }
+        }
     }
 
-    /**
-     * Indique le nombre de page dans le carnet
-     * @return
-     */
-    public int nbPage(){
-        return this.pages.size();
-    }
 
     /**
      * On se déplace d'une page

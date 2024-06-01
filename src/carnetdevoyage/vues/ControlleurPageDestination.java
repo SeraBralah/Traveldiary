@@ -4,6 +4,7 @@ import carnetdevoyage.carnet.Carnet;
 import carnetdevoyage.carnet.pages.PageDestination;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class ControlleurPageDestination implements Observateur{
@@ -56,9 +57,18 @@ public class ControlleurPageDestination implements Observateur{
     }
 
     public void image(){
-        this.imageCarre.setImage(this.p.getImageDestination().getImage(0));
-        this.imageLongue.setImage(this.p.getImageDestination().getImage(1));
-        this.imageLongue2.setImage(this.p.getImageDestination().getImage(2));
+        if(this.p.getImageDestination().getImage(0)!=null) {
+            Image image1 = new Image(this.p.getImageDestination().getImage(0));
+            this.imageCarre.setImage(image1);
+        }
+        if(this.p.getImageDestination().getImage(1)!=null) {
+            Image image2 = new Image(this.p.getImageDestination().getImage(1));
+            this.imageLongue.setImage(image2);
+        }
+        if(this.p.getImageDestination().getImage(2)!=null) {
+            Image image3 = new Image(this.p.getImageDestination().getImage(2));
+            this.imageLongue2.setImage(image3);
+        }
     }
 
     @Override

@@ -33,7 +33,7 @@ public class ControlleurNavigation implements Observateur{
     @FXML
     void pageSuivante(ActionEvent event) throws IOException {
 
-            if (c.getNumPageCourante() != c.nbPage()-1) {
+            if (c.getNumPageCourante() != c.getNbPage()-1) {
                 c.avancerPage();
                 afficherPageDestination(event);
             }
