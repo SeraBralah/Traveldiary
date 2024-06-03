@@ -36,6 +36,7 @@ public class ControlleurMenu implements Observateur{
 
     private Carnet c;
 
+    private Stage stage;
 
     @FXML
     private MenuItem ajouterParticipant;
@@ -44,8 +45,6 @@ public class ControlleurMenu implements Observateur{
     private Menu editions;
     @FXML
     private Menu modifier;
-
-    private Stage stage;
 
     @FXML
     private MenuItem supprimerPage;
@@ -73,7 +72,11 @@ public class ControlleurMenu implements Observateur{
 
 
     @FXML
-    void Charger(ActionEvent event) {
+    void Charger(ActionEvent event) throws IOException {
+        int page = 0;
+        if (c.getPageCourante().estDestination()) {
+            page = 1;
+        }
         final Stage dialog = new Stage();
         dialog.setTitle("Chargement d'une sauvegarde");
         FileChooser choixfichier = new FileChooser();
@@ -84,10 +87,15 @@ public class ControlleurMenu implements Observateur{
         File selectedFile = choixfichier.showOpenDialog(dialog);
         if (selectedFile != null) {
             c.chargement(selectedFile);
-            this.c.notifierObservateurs();
+            if (page == 1) c.avancerPage();
         }
+        this.c.notifierObservateurs();
+
     }
 
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
 
 
     @FXML

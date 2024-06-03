@@ -172,7 +172,6 @@ public class ControlleurPagePresentation implements Observateur {
 
     @Override
     public void reagir() {
-
         majAuteur();
         ajouterParticipant();
         setInfosoption();
