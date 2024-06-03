@@ -37,6 +37,8 @@ public class ControlleurMenu implements Observateur{
     private Carnet c;
 
 
+    @FXML
+    private MenuItem ajouterParticipant;
 
     @FXML
     private Menu editions;
@@ -166,11 +168,11 @@ public class ControlleurMenu implements Observateur{
                 this.infosJournee.setVisible(false);
                 this.localDest.setVisible(false);
                 this.titreDest.setVisible(false);
-
             } else if (this.c.getPageCourante().estDestination()) {
                 this.infosSuppCarnet.setVisible(false);
                 this.titreCarnet.setVisible(false);
-
+                this.supprimerParticipant.setVisible(false);
+                this.ajouterParticipant.setVisible(false);
             }
         } else {
             this.editions.setVisible(false);
