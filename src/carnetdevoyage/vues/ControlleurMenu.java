@@ -71,6 +71,25 @@ public class ControlleurMenu implements Observateur{
     @FXML
     private MenuItem titreDest;
 
+
+    @FXML
+    void Charger(ActionEvent event) {
+        final Stage dialog = new Stage();
+        dialog.setTitle("Chargement d'une sauvegarde");
+        FileChooser choixfichier = new FileChooser();
+        choixfichier.setTitle("Quel fichier charger ?");
+        choixfichier.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("json", "*.json"),
+                new FileChooser.ExtensionFilter("All Files", "*.*"));
+        File selectedFile = choixfichier.showOpenDialog(dialog);
+        if (selectedFile != null) {
+            c.chargement(selectedFile);
+            this.c.notifierObservateurs();
+        }
+    }
+
+
+
     @FXML
     void InfosJourneeDest(ActionEvent event) {
         if(this.c.getPageCourante().estDestination()) {
@@ -221,23 +240,6 @@ public class ControlleurMenu implements Observateur{
         return repertoire.showDialog(stage1);
     }
 
-    public void sauvegarderCarnet(Path chemin, Carnet carnet) {
-        // Convertir le carnet en JSON
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String carnetJson = gson.toJson(carnet);
-
-        // Créer le fichier de sauvegarde
-        File fichierSauvegarde = chemin.resolve("carnet.json").toFile();
-        try (FileWriter writer = new FileWriter(fichierSauvegarde)) {
-            writer.write(carnetJson);
-            System.out.println("Carnet sauvegardé avec succès à : " + fichierSauvegarde.getAbsolutePath());
-        } catch (IOException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Erreur lors de la sauvegarde du carnet : " + e.getMessage());
-            alert.showAndWait();
-        }
-    }
-
 
     @FXML
     void Quitter(ActionEvent event) {
@@ -267,14 +269,6 @@ public class ControlleurMenu implements Observateur{
             p.getGestionnaire().ajouterParticipants(new Participant(boiteDialogue("Ajoutez un participant : ")));
             this.c.notifierObservateurs();
         }
-    }
-
-    @FXML
-    void ValiderParticipant(ActionEvent event) {
-        this.c.getPagePresentation().getGestionnaire().ajouterParticipants(new Participant(this.nomParticipant.getText()));
-        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-        stage.close();
-        this.c.notifierObservateurs();
     }
 
     public String boiteDialogue(String demande){

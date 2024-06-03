@@ -162,6 +162,7 @@ public class Carnet extends SujetObserve implements Iterable<Pages> {
                     ajouterPageDestination(chargement.fromJson(jsonData, PageDestination.class));
                 }
             }
+            this.carnetCharge=false;
             this.nbPage=this.pages.size();
             notifierObservateurs();
         } catch (IOException e) {

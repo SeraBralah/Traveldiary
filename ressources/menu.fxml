@@ -13,6 +13,7 @@
                <accelerator>
                   <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                </accelerator></MenuItem>
+            <MenuItem mnemonicParsing="false" onAction="#Charger" text="Charger" />
             <MenuItem mnemonicParsing="false" onAction="#Quitter" text="Quitter" />
       </items>
     </Menu>

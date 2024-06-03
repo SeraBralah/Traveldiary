@@ -5,14 +5,23 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="1021.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="carnetdevoyage.vues.ControlleurNavigation">
+<HBox maxHeight="27.0" maxWidth="1021.0" minHeight="27.0" minWidth="218.0" prefHeight="27.0" prefWidth="218.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="carnetdevoyage.vues.ControlleurNavigation">
    <children>
-      <Button mnemonicParsing="false" onAction="#pagePrecedente" prefHeight="26.0" prefWidth="24.0" text="&lt;" />
+      <Button mnemonicParsing="false" onAction="#pagePrecedente" prefHeight="26.0" prefWidth="24.0" style="-fx-background-radius: 100;" text="&lt;">
+         <opaqueInsets>
+            <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+         </opaqueInsets></Button>
       <Label fx:id="nbPage" alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="1021.0" text=".../..." textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
          <opaqueInsets>
-            <Insets top="5.0" />
+            <Insets top="9.0" />
          </opaqueInsets>
+         <HBox.margin>
+            <Insets top="5.0" />
+         </HBox.margin>
       </Label>
-      <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#pageSuivante" prefHeight="26.0" prefWidth="24.0" text="&gt;" />
+      <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#pageSuivante" prefHeight="26.0" prefWidth="24.0" style="-fx-background-radius: 100;" text="&gt;">
+         <opaqueInsets>
+            <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+         </opaqueInsets></Button>
    </children>
 </HBox>

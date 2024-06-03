@@ -54,7 +54,6 @@ public class ControlleurAccueil {
 System.out.println(carnet);
                 if (carnet.getNbPage() != 0) {
                     afficherCarnet(carnet, event);
-
                 }
         }
     }

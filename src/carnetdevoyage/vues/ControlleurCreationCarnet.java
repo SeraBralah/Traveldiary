@@ -67,14 +67,14 @@ public class ControlleurCreationCarnet {
             File imageBase = new File(imageSelect.getAbsolutePath());
             try{
                 Path destinationFichier = Paths.get(cheminImage);
-                if(!Files.exists(destinationFichier)){ //si le dossier est pas encore créé (à revoir pour sauvegarde)
+                if(!Files.exists(destinationFichier)){
                     Files.createDirectories(destinationFichier);
                 }
                 //on change le chemin :
                 Path destinationImage = destinationFichier.resolve(imageSelect.getName());
                 //on copie le fichier :
                 Files.copy(imageSelect.toPath(),destinationImage, StandardCopyOption.REPLACE_EXISTING);
-                this.a.setImageAuteur(destinationImage.toUri().toString());
+                this.a.setImageAuteur(destinationImage.toFile().getPath());
 
             } catch (IOException e){
                 Alert a = new Alert(Alert.AlertType.ERROR);
@@ -83,7 +83,7 @@ public class ControlleurCreationCarnet {
                 a.setContentText(e.getMessage());
                 a.showAndWait();
             }
-            this.a.setImageAuteur(imageSelect.getPath());
+            //this.a.setImageAuteur(imageSelect.getPath());
         }
     }
 
