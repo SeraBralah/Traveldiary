@@ -171,6 +171,10 @@ public class Carnet extends SujetObserve implements Iterable<Pages> {
             alert.showAndWait();        }
     }
 
+    public boolean getCarnetCharge() {
+        return carnetCharge;
+    }
+
     public void setCarnetCharge(boolean carnetCharge) {
         this.carnetCharge = carnetCharge;
     }

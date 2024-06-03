@@ -10,10 +10,12 @@ import com.google.gson.GsonBuilder;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -102,7 +104,8 @@ public class ControlleurMenu implements Observateur{
     void InfosJourneeDest(ActionEvent event) {
         if(this.c.getPageCourante().estDestination()) {
             PageDestination p = (PageDestination) this.c.getPageCourante();
-            p.getDescriptionDestination().setTexte(boiteDialogue("Modifier les informations du la journée :"));
+            //p.getDescriptionDestination().setTexte(boiteDialogue("Modifier les informations du la journée :"));
+            dialogueTexte();
             this.c.notifierObservateurs();
         }
     }
@@ -288,6 +291,26 @@ public class ControlleurMenu implements Observateur{
         Optional<String> result = dialog.showAndWait();
         result.ifPresent(text -> res.set(text));
         return res.toString();
+    }
+
+    public void dialogueTexte(){
+        Stage stage = new Stage();
+        if(this.c.getPageCourante().estDestination()) {
+            PageDestination p = (PageDestination) this.c.getPageCourante();
+            stage.setTitle("Description de ta journée :");
+            TextArea textArea = new TextArea();
+            textArea.setWrapText(true);
+            Button printButton = new Button("Valider");
+            printButton.setOnAction(event -> {
+                p.getDescriptionDestination().setTexte(textArea.getText());
+                stage.close();
+            });
+            VBox vbox = new VBox(10, textArea, printButton);
+            vbox.setPadding(new Insets(20));
+            Scene scene = new Scene(vbox, 400, 300);
+            stage.setScene(scene);
+            stage.show();
+        }
     }
 
 

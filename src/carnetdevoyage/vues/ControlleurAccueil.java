@@ -51,7 +51,6 @@ public class ControlleurAccueil {
         File selectedFile = choixfichier.showOpenDialog(dialog);
         if (selectedFile != null) {
             carnet.chargement(selectedFile);
-System.out.println(carnet);
                 if (carnet.getNbPage() != 0) {
                     afficherCarnet(carnet, event);
                 }

@@ -54,7 +54,7 @@
                         <Font name="Times New Roman Bold" size="19.0" />
                      </font>
                   </Label>
-                  <Label fx:id="infosauteur" prefHeight="110.0" prefWidth="593.0" text="Infos auteur : âge, centre d'intérêt..." wrapText="true">
+                  <Label fx:id="infosauteur" onMouseClicked="#changerTexteAuteur" prefHeight="110.0" prefWidth="593.0" text="Infos auteur : âge, centre d'intérêt..." wrapText="true">
                      <font>
                         <Font size="13.0" />
                      </font>
@@ -83,7 +83,7 @@
          <top>
             <VBox prefHeight="44.0" prefWidth="632.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="titreCarnet" alignment="CENTER" contentDisplay="CENTER" prefHeight="31.0" prefWidth="1073.0" text="TITRE" textAlignment="CENTER" wrapText="true">
+                  <Label fx:id="titreCarnet" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#changerTitreCarnet" prefHeight="31.0" prefWidth="1073.0" text="TITRE" textAlignment="CENTER" wrapText="true">
                      <font>
                         <Font size="24.0" />
                      </font>

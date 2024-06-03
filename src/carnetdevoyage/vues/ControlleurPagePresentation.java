@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -22,6 +23,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Optional;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class ControlleurPagePresentation implements Observateur {
 
@@ -55,7 +58,7 @@ public class ControlleurPagePresentation implements Observateur {
         this.listviewParticipant=new ListView<String>();
     }
 
-//TEXTINPUTDIALOG
+
 
     public void initialize() {
         PagePresentation p = (PagePresentation) c.getPageCourante();
@@ -90,11 +93,9 @@ public class ControlleurPagePresentation implements Observateur {
 
     public void ajouterParticipant(){
         ObservableList<String> noms = FXCollections.observableArrayList();
-
         for (Participant participant : this.c.getPagePresentation().getGestionnaire()) {
             noms.add(participant.getNom());
         }
-
         this.listviewParticipant.setItems(noms);
     }
 
@@ -112,7 +113,6 @@ public class ControlleurPagePresentation implements Observateur {
         if (p.getAuteur().getImageAuteur() != null) {
             String imagePath = p.getAuteur().getImageAuteur();
             File file = new File(imagePath);
-
             if (file.exists()) {
                 try {
                     // Convert the file path to a URI and then to a string URL
@@ -166,9 +166,38 @@ public class ControlleurPagePresentation implements Observateur {
 
     @FXML
     void changerNomAuteur(MouseEvent event) {
-
+        String s = boiteDialogue("Nom de l'auteur : ");
+        this.c.getPagePresentation().getAuteur().setAuteur(s);
+        this.nomauteur.setText(s);
+        this.c.notifierObservateurs();
     }
 
+    public String boiteDialogue(String demande){
+        AtomicReference<String> res =  new AtomicReference<>();
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Editions");
+        dialog.setHeaderText(demande);
+
+        Optional<String> result = dialog.showAndWait();
+        result.ifPresent(text -> res.set(text));
+        return res.toString();
+    }
+
+    @FXML
+    void changerTexteAuteur(MouseEvent event) {
+        String s = boiteDialogue("Présentation de l'auteur : ");
+        this.c.getPagePresentation().getAuteur().setInfos(s);
+        this.infosauteur.setText(s);
+        this.c.notifierObservateurs();
+    }
+
+    @FXML
+    void changerTitreCarnet(MouseEvent event) {
+        String s = boiteDialogue("Titre du carnet : ");
+        this.c.getPagePresentation().getPresentationCarnet().setTitre(s);
+        this.titreCarnet.setText(s);
+        this.c.notifierObservateurs();
+    }
 
     @Override
     public void reagir() {
