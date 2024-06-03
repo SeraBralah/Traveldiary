@@ -77,12 +77,12 @@
                <children>
                   <HBox prefHeight="286.0" prefWidth="504.0">
                      <children>
-                        <ImageView fx:id="imageLongue" fitHeight="279.0" fitWidth="176.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imageLongue" fitHeight="279.0" fitWidth="176.0" pickOnBounds="true">
                            <HBox.margin>
                               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                            </HBox.margin>
                         </ImageView>
-                        <ImageView fx:id="imageCarre" fitHeight="282.0" fitWidth="290.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imageCarre" fitHeight="282.0" fitWidth="290.0" nodeOrientation="INHERIT" pickOnBounds="true">
                            <HBox.margin>
                               <Insets bottom="2.0" left="30.0" right="2.0" top="2.0" />
                            </HBox.margin>

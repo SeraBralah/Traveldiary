@@ -23,6 +23,7 @@ public class Carnet extends SujetObserve implements Iterable<Pages> {
     private int pageCourante;
     @Expose
     private int nbPage;
+    private boolean carnetCharge;
 
     /**
      * Constructeur du carnet
@@ -31,6 +32,7 @@ public class Carnet extends SujetObserve implements Iterable<Pages> {
         pages = new ArrayList<>();
         this.pageCourante = 0;
         this.nbPage = 0;
+        this.carnetCharge = false; //si le carnet n'est pas chargé
     }
 
     /**
@@ -51,7 +53,7 @@ public class Carnet extends SujetObserve implements Iterable<Pages> {
      * @param pageDestination
      */
     public void ajouterPageDestination(PageDestination pageDestination) {
-        pageDestination.setImageDestination(new ImageDestination());
+        if(!this.carnetCharge)pageDestination.setImageDestination(new ImageDestination());
         this.pages.add(pageDestination);
         this.nbPage++;
         this.notifierObservateurs();
@@ -145,10 +147,9 @@ public class Carnet extends SujetObserve implements Iterable<Pages> {
             pagePresentation = null;
             pageCourante = 0;
             nbPage = 0;
+            this.carnetCharge=true;
             flot = new FileReader(emplacement);
-            Gson chargement = new GsonBuilder()
-                    .registerTypeAdapter(Pages.class, new PageAdapter())
-                    .create();
+            Gson chargement = new Gson();
             BufferedReader flotFiltre = new BufferedReader(flot);
             String ligne;
             while ((ligne = flotFiltre.readLine()) != null) {
@@ -167,5 +168,9 @@ public class Carnet extends SujetObserve implements Iterable<Pages> {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Problème lors de la sauvegarde");
             alert.showAndWait();        }
+    }
+
+    public void setCarnetCharge(boolean carnetCharge) {
+        this.carnetCharge = carnetCharge;
     }
 }
