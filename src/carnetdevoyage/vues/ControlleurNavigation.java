@@ -8,7 +8,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
@@ -19,6 +22,14 @@ public class ControlleurNavigation implements Observateur{
     @FXML
     private Label nbPage;
 
+    @FXML
+    private ImageView homeImage;
+
+    @FXML
+    private Button boutonHome;
+
+
+
     private  Carnet c;
     public ControlleurNavigation(Carnet carnet) {
         this.c=carnet;
@@ -27,8 +38,24 @@ public class ControlleurNavigation implements Observateur{
 
     @FXML
     public void initialize() {
+        if(!this.c.getPageCourante().estPresentation()){
+            this.boutonHome.setVisible(true);
+        } else {
+            this.boutonHome.setVisible(false);
+        }
         setnumPage();
+        this.homeImage.setImage(new Image(getClass().getResourceAsStream("/image/accueil.png")));
     }
+
+    @FXML
+    void selectHome(ActionEvent event) throws IOException {
+
+        this.c.setPageCourante(0);
+        afficherPagePresentation(event);
+
+
+    }
+
 
     @FXML
     void pageSuivante(ActionEvent event) throws IOException {

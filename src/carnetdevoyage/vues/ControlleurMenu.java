@@ -72,6 +72,35 @@ public class ControlleurMenu implements Observateur{
     @FXML
     private MenuItem titreDest;
 
+    @FXML
+    private MenuItem itemCharger;
+
+    public ControlleurMenu(Carnet carnet){
+        this.c=carnet;
+    }
+
+    @FXML
+    public void initialize() {
+        //disable les boutons inutiles ici
+        if (this.c.getNbPage() != 0) {
+            if (this.c.getPageCourante().estPresentation()) {
+                this.ajoutImage.setVisible(false);
+                this.infosJournee.setVisible(false);
+                this.localDest.setVisible(false);
+                this.titreDest.setVisible(false);
+            } else if (this.c.getPageCourante().estDestination()) {
+                this.infosSuppCarnet.setVisible(false);
+                this.titreCarnet.setVisible(false);
+                this.supprimerParticipant.setVisible(false);
+                this.ajouterParticipant.setVisible(false);
+                this.itemCharger.setVisible(false);
+            }
+        } else {
+            this.editions.setVisible(false);
+        }
+    }
+
+
 
     @FXML
     void Charger(ActionEvent event) throws IOException {
@@ -185,29 +214,6 @@ public class ControlleurMenu implements Observateur{
 
 
 
-    public ControlleurMenu(Carnet carnet){
-        this.c=carnet;
-    }
-
-    @FXML
-    public void initialize() {
-        //disable les boutons inutiles ici
-        if (this.c.getNbPage() != 0) {
-            if (this.c.getPageCourante().estPresentation()) {
-                this.ajoutImage.setVisible(false);
-                this.infosJournee.setVisible(false);
-                this.localDest.setVisible(false);
-                this.titreDest.setVisible(false);
-            } else if (this.c.getPageCourante().estDestination()) {
-                this.infosSuppCarnet.setVisible(false);
-                this.titreCarnet.setVisible(false);
-                this.supprimerParticipant.setVisible(false);
-                this.ajouterParticipant.setVisible(false);
-            }
-        } else {
-            this.editions.setVisible(false);
-        }
-    }
 
     @FXML
     void AjouterUnePage(ActionEvent event) {
