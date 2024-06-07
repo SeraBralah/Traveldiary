@@ -8,6 +8,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class MainCarnet extends Application {
@@ -32,6 +33,7 @@ public class MainCarnet extends Application {
         });
 
         Parent root = loader.load();
+        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/image/logo.jpg")));
         primaryStage.setTitle("Carnet de voyage");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
