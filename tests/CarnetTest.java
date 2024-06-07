@@ -80,7 +80,7 @@ class CarnetTest {
     @Test
     void nbPage() throws DateException {
         Carnet c = constructeurComplet();
-        assertEquals(c.nbPage(),3);
+        assertEquals(c.getNbPage(),3);
     }
 
     @Test

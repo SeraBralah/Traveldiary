@@ -6,14 +6,14 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 
-<HBox maxHeight="38.0" maxWidth="1021.0" minHeight="27.0" minWidth="218.0" prefHeight="38.0" prefWidth="283.0" style="-fx-background-color: EE964B; -fx-border-radius: 10;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="carnetdevoyage.vues.ControlleurNavigation">
+<HBox maxHeight="38.0" maxWidth="1021.0" minHeight="27.0" minWidth="218.0" prefHeight="38.0" prefWidth="319.0" style="-fx-background-color: EE964B; -fx-background-radius: 15;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="carnetdevoyage.vues.ControlleurNavigation">
    <children>
       <Button fx:id="boutonHome" mnemonicParsing="false" onAction="#selectHome" prefHeight="26.0" prefWidth="170.0" style="-fx-border-width: 2; -fx-border-color: #0D3B66;">
          <graphic>
             <ImageView fx:id="homeImage" fitHeight="17.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true" />
          </graphic>
          <HBox.margin>
-            <Insets right="20.0" />
+            <Insets left="20.0" right="20.0" />
          </HBox.margin>
       </Button>
       <Button mnemonicParsing="false" onAction="#pagePrecedente" prefHeight="26.0" prefWidth="24.0" style="-fx-background-radius: 100; -fx-background-color: FAF0CA; -fx-border-color: #0D3B66; -fx-border-radius: 100; -fx-border-width: 2;" text="&lt;">
@@ -31,7 +31,10 @@
       <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#pageSuivante" prefHeight="26.0" prefWidth="24.0" style="-fx-background-radius: 100; -fx-background-color: FAF0CA; -fx-border-color: #0D3B66; -fx-border-width: 2; -fx-border-radius: 100;" text="&gt;">
          <opaqueInsets>
             <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-         </opaqueInsets></Button>
+         </opaqueInsets>
+         <HBox.margin>
+            <Insets right="20.0" />
+         </HBox.margin></Button>
    </children>
    <padding>
       <Insets left="1.0" right="1.0" top="5.0" />

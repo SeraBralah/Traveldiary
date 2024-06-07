@@ -39,14 +39,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="605.0" prefWidth="1021.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="carnetdevoyage.vues.ControlleurAccueil">
+<VBox prefHeight="605.0" prefWidth="1021.0" style="-fx-background-color: FAF0CA;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="carnetdevoyage.vues.ControlleurAccueil">
   <children>
       <fx:include source="menu.fxml" />
       <BorderPane prefHeight="582.0" prefWidth="1021.0">
          <top>
-            <VBox alignment="CENTER" prefHeight="541.0" prefWidth="1001.0" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER" prefHeight="541.0" prefWidth="1001.0" style="-fx-background-color: FAF0CA;" BorderPane.alignment="CENTER">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="31.0" prefWidth="1073.0" text="Carnet de voyage" textAlignment="CENTER" wrapText="true">
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="73.0" prefWidth="458.0" style="-fx-border-radius: 20; -fx-border-color: F95738; -fx-border-width: 4;" text="Carnet de voyage" textAlignment="CENTER" textFill="#0d3b66" wrapText="true">
                      <font>
                         <Font size="44.0" />
                      </font>
@@ -54,7 +54,7 @@
                         <Insets bottom="20.0" />
                      </VBox.margin>
                   </Label>
-                  <Button fx:id="newc" mnemonicParsing="false" onAction="#NouveauCarnet" text="Nouveau carnet">
+                  <Button fx:id="newc" mnemonicParsing="false" onAction="#NouveauCarnet" prefHeight="37.0" prefWidth="128.0" style="-fx-background-radius: 20; -fx-font-size: 14; -fx-border-radius: 20; -fx-border-color: #0D3B66;" text="Nouveau carnet">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
@@ -62,7 +62,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="loadc" mnemonicParsing="false" onAction="#ChargerCarnet" text="Charger">
+                  <Button fx:id="loadc" mnemonicParsing="false" onAction="#ChargerCarnet" prefHeight="33.0" prefWidth="84.0" style="-fx-background-radius: 20; -fx-font-size: 16; -fx-border-color: #0D3B66; -fx-border-radius: 20;" text="Charger">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
@@ -70,7 +70,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="exitc" mnemonicParsing="false" onAction="#Quitter" text="Quitter">
+                  <Button fx:id="exitc" mnemonicParsing="false" onAction="#Quitter" prefHeight="31.0" prefWidth="71.0" style="-fx-background-radius: 20; -fx-font-size: 16; -fx-border-color: #0D3B66; -fx-border-radius: 20;" text="Quitter">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
