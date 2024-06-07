@@ -126,7 +126,7 @@ public class ControlleurCreationCarnet {
                 int nbjour = presentation.nbJourDuVoyage(presentation.getDatedebut(), presentation.getDatefin());
                 p.setPresentationCarnet(presentation);
                 c.ajouterPagePresentation(p);
-                for (int i = 0; i < nbjour; i++) {
+                for (int i = 0; i < nbjour+1; i++) {
                     //ajouter les pages dans le carnet
                     PageDestination pd = new PageDestination();
                     pd.setImageDestination(new ImageDestination());

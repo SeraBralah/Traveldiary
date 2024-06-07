@@ -7,10 +7,12 @@ import carnetdevoyage.carnet.presentation.PagePresentation;
 import carnetdevoyage.carnet.presentation.Participant;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -260,7 +262,7 @@ public class ControlleurMenu implements Observateur{
 
     @FXML
     void Quitter(ActionEvent event) {
-
+        Platform.exit();
     }
 
 
