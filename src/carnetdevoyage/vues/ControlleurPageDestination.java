@@ -15,6 +15,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -67,18 +68,34 @@ public class ControlleurPageDestination implements Observateur{
         this.localisation.setText(p.getLocalisationDestination().getLocalisation());
     }
 
-    public void image(){
-        if(this.p.getImageDestination().getImage(0)!=null) {
-            Image image1 = new Image(this.p.getImageDestination().getImage(0));
-            this.imageCarre.setImage(image1);
+    public void image() {
+        if (this.p.getImageDestination().getImage(0) != null) {
+            String imagePath = this.p.getImageDestination().getImage(0);
+            File file = new File(imagePath);
+            if (file.exists()) {
+                String imageUrl = file.toURI().toString();
+                Image image = new Image(imageUrl);
+                this.imageCarre.setImage(image);
+            }
         }
-        if(this.p.getImageDestination().getImage(1)!=null) {
-            Image image2 = new Image(this.p.getImageDestination().getImage(1));
-            this.imageLongue.setImage(image2);
+        if (this.p.getImageDestination().getImage(1) != null) {
+            String imagePath = this.p.getImageDestination().getImage(1);
+            File file = new File(imagePath);
+            if (file.exists()) {
+                String imageUrl = file.toURI().toString();
+                Image image = new Image(imageUrl);
+                this.imageLongue.setImage(image);
+            }
         }
-        if(this.p.getImageDestination().getImage(2)!=null) {
-            Image image3 = new Image(this.p.getImageDestination().getImage(2));
-            this.imageLongue2.setImage(image3);
+        if (this.p.getImageDestination().getImage(2) != null) {
+            String imagePath = this.p.getImageDestination().getImage(2);
+            File file = new File(imagePath);
+            if (file.exists()) {
+                String imageUrl = file.toURI().toString();
+                Image image = new Image(imageUrl);
+                this.imageLongue2.setImage(image);
+            }
+
         }
     }
 

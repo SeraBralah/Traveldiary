@@ -156,7 +156,7 @@ public class ControlleurMenu implements Observateur{
         // récupérer l'image
         if (this.c.getPageCourante().estDestination()) {
             PageDestination p = (PageDestination) this.c.getPageCourante();
-            String cheminImage = "../ImagesCarnet";
+            String cheminImage = "./ImagesCarnet";
             FileChooser fileChooser = new FileChooser();
             fileChooser.getExtensionFilters().addAll(
                     new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"),
@@ -170,9 +170,11 @@ public class ControlleurMenu implements Observateur{
                     if (!Files.exists(destinationFichier)) {
                         Files.createDirectories(destinationFichier);
                     }
+                    //on change le chemin :
                     Path destinationImage = destinationFichier.resolve(imageSelect.getName());
-                    Files.copy(imageSelect.toPath(), destinationImage, StandardCopyOption.REPLACE_EXISTING);
-                    p.getImageDestination().ajouterImage(destinationImage.toUri().toString());
+                    //on copie le fichier :
+                    Files.copy(imageSelect.toPath(),destinationImage, StandardCopyOption.REPLACE_EXISTING);
+                    p.getImageDestination().ajouterImage(destinationImage.toFile().getPath());
                 } catch (IOException e) {
                     Alert a = new Alert(Alert.AlertType.ERROR);
                     a.setTitle("Erreur");

@@ -45,7 +45,7 @@ public class MainCarnet extends Application {
 }
 /*
 --module-path
-/home/clara/Documents/S4/java/ressource/javafx-sdk-17.0.10/lib/
+/home/...linktotheressource.../javafx-sdk-17.0.10/lib/
 --add-modules
 javafx.controls,javafx.fxml
  */

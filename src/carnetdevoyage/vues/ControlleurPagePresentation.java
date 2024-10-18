@@ -135,7 +135,7 @@ public class ControlleurPagePresentation implements Observateur {
     @FXML
     void changerPhotoAuteur(MouseEvent event) {
         if (this.c.getPageCourante().estPresentation()) {
-            String cheminImage = "../ImagesCarnet";
+            String cheminImage = "./ImagesCarnet";
             FileChooser fileChooser = new FileChooser();
             fileChooser.getExtensionFilters().addAll(
                     new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"),
@@ -201,9 +201,14 @@ public class ControlleurPagePresentation implements Observateur {
 
     @Override
     public void reagir() {
-        majAuteur();
-        ajouterParticipant();
-        setInfosoption();
-        setTitreCarnet();
+        if(this.c.getPageCourante().estPresentation()) {
+            PagePresentation p = (PagePresentation) c.getPageCourante();
+            StringBuilder s = new StringBuilder(p.getPresentationCarnet().getDatedebut() + " - " + p.getPresentationCarnet().getDatefin());
+            this.date.setText(s.toString());
+            majAuteur();
+            ajouterParticipant();
+            setInfosoption();
+            setTitreCarnet();
+        }
     }
 }

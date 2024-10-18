@@ -19,7 +19,6 @@ public class ImageDestination {
     }
 
     public void ajouterImage(String chemin) {
-        Image image = new Image(chemin);
         if (this.id != 3) {
             this.tabChemin[this.id] = chemin;
             this.id++;

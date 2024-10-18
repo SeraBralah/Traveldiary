@@ -56,7 +56,7 @@ public class ControlleurCreationCarnet {
 
     @FXML
     void ChercherImage(ActionEvent event) {
-        String cheminImage = "../ImagesCarnet";
+        String cheminImage = "./ImagesCarnet";
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"), //filtre pour les images
